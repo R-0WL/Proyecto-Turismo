@@ -1,4 +1,4 @@
-public class Reserva {
+public class modeloReserva {
     private int id;
     private Usuario usuario;
     private Vehiculo vehiculo;

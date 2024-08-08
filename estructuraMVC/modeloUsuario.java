@@ -1,4 +1,4 @@
-public class Usuario {
+public class modeloUsuario {
     private int id;
     private String nombre;
     private String correo;

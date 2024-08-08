@@ -1,4 +1,4 @@
-public class Vehiculo {
+public class modeloVehiculo {
     private int id;
     private String marca;
     private String modelo;

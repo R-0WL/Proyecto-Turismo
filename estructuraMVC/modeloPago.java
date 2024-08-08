@@ -1,4 +1,4 @@
-public class Pago {
+public class modeloPago {
     private int id;
     private Reserva reserva;
     private double monto;

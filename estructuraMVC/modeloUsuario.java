@@ -49,4 +49,18 @@ public class modeloUsuario {
             return false;
         }
     }
+
+    //ACTUALIZAR PERFIL
+    public void actualizarPerfil(String nombre, String correo){
+        this.nombre = nombre;
+        this.correo = correo;
+        //Lógica para actualizar perfil
+        System.out.println("Perfil actualizado con éxito.");
+    }
+    
+    //CAMBIAR CONTRASEÑA
+    public void cambiarContraseña(String nuevaContraseña){
+        this.contraseña = nuevaContraseña;
+        System.out.println("Contraseña actualizada con éxito.");
+    }
 }

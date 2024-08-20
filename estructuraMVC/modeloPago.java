@@ -1,3 +1,4 @@
+import java.util.Date;
 public class modeloPago {
     private int id;
     private Reserva reserva;
@@ -6,4 +7,5 @@ public class modeloPago {
     private String metodoPago;
 
     // Métodos: Getters, Setters, procesarPago, generarFactura
+
 }

@@ -29,5 +29,7 @@ public class modeloUsuario {
     public void setCorreo(String correo){this.correo = correo;}
     public void setContraseña(String contraseña){this.contraseña = contraseña;}
     public void setTipoUsuario(String tipoUsuario){this.tipoUsuario = tipoUsuario;}
+    
+}
 
 

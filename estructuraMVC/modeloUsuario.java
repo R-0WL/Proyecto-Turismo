@@ -30,37 +30,4 @@ public class modeloUsuario {
     public void setContraseña(String contraseña){this.contraseña = contraseña;}
     public void setTipoUsuario(String tipoUsuario){this.tipoUsuario = tipoUsuario;}
 
-    //REGISTRAR USUARIO
-    public void registrar(String nombre, String correo, String contraseña){
-        //Lógica para registrar al usuario y guardar en base de datos
-        this.nombre = nombre;
-        this.contraseña = contraseña;
-        this.correo = correo;
-        System.out.println("Usuario registrado con éxito. Bienvenido");
-    }
 
-    //INICIAR SESION
-    public boolean iniciarSesion(String correo, String contraseña){
-        if(this.correo.equals(correo) && this.contraseña.equals(contraseña)){
-            System.out.println("Inicio de sesión exitoso. Bienvenido");
-            return true;
-        } else {
-            System.out.println("Correo o contraseña incorrectos.");
-            return false;
-        }
-    }
-
-    //ACTUALIZAR PERFIL
-    public void actualizarPerfil(String nombre, String correo){
-        this.nombre = nombre;
-        this.correo = correo;
-        //Lógica para actualizar perfil
-        System.out.println("Perfil actualizado con éxito.");
-    }
-    
-    //CAMBIAR CONTRASEÑA
-    public void cambiarContraseña(String nuevaContraseña){
-        this.contraseña = nuevaContraseña;
-        System.out.println("Contraseña actualizada con éxito.");
-    }
-}

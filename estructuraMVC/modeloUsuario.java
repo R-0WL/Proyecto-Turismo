@@ -6,4 +6,5 @@ public class modeloUsuario {
     private String tipoUsuario;
 
     // Métodos: Getters, Setters, registrar, iniciarSesion, actualizarPerfil, cambiarContraseña
+    
 }

@@ -8,4 +8,6 @@ public class modeloPago {
 
     // Métodos: Getters, Setters, procesarPago, generarFactura
 
+
+    
 }

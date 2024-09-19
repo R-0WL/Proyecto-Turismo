@@ -1,9 +1,9 @@
 import java.util.Date;
 
-public class modeloReserva {
+public class Reserva {
     private int id;
-    private modeloUsuario usuario;
-    private modeloVehiculo vehiculo;
+    private Usuario usuario;
+    private Vehiculo vehiculo;
     private Date fechaInicio;
     private Date fechaFin;
     private double total;
@@ -11,7 +11,7 @@ public class modeloReserva {
     // Métodos: Getters, Setters, crearReserva, cancelarReserva, modificarReserva
 
     //METODO CONSTRUCTOR
-    public modeloReserva(int id, modeloUsuario usuario, modeloVehiculo vehiculo, Date fechaInicio, Date fechaFin, double total) {
+    public Reserva(int id, Usuario usuario, Vehiculo vehiculo, Date fechaInicio, Date fechaFin, double total) {
         this.id = id;
         this.usuario = usuario;
         this.vehiculo = vehiculo;
@@ -22,23 +22,23 @@ public class modeloReserva {
     
     // GETTERS
     public int getId() {return id;}
-    public modeloUsuario getUsuario() {return usuario;}
-    public modeloVehiculo getVehiculo() {return vehiculo;}
+    public Usuario getUsuario() {return usuario;}
+    public Vehiculo getVehiculo() {return vehiculo;}
     public Date getFechaInicio() {return fechaInicio;}
     public Date getFechaFin() {return fechaFin;}
     public double getTotal() {return total;}
     
     //SETTERS
     public void setId(int id) {this.id = id;}    
-    public void setUsuario(modeloUsuario usuario) {this.usuario = usuario;}
-    public void setVehiculo(modeloVehiculo vehiculo) {this.vehiculo = vehiculo;}
+    public void setUsuario(Usuario usuario) {this.usuario = usuario;}
+    public void setVehiculo(Vehiculo vehiculo) {this.vehiculo = vehiculo;}
     public void setFechaInicio(Date fechaInicio) {this.fechaInicio = fechaInicio;}
     public void setFechaFin(Date fechaFin) {this.fechaFin = fechaFin;}
     public void setTotal(double total) {this.total = total;}
     
     //METODO PARA CREAR UNA NUEVA RESERVA
-    public static modeloReserva crearReserva(int id, modeloUsuario usuario, modeloVehiculo vehiculo, Date fechaInicio, Date fechaFin, double total) {
-        return new modeloReserva(id, usuario, vehiculo, fechaInicio, fechaFin, total);
+    public static Reserva crearReserva(int id, Usuario usuario, Vehiculo vehiculo, Date fechaInicio, Date fechaFin, double total) {
+        return new Reserva(id, usuario, vehiculo, fechaInicio, fechaFin, total);
     }
     
     //METODO PARA CANCELAR UNA RESERVA

@@ -1,7 +1,7 @@
 import java.util.Date;
-public class modeloPago {
+public class Pago {
     private int id;
-    private modeloReserva reserva;
+    private Reserva reserva;
     private double monto;
     private Date fechaPago;
     private String metodoPago;
@@ -9,7 +9,7 @@ public class modeloPago {
     // Métodos: Getters, Setters, procesarPago, generarFactura
 
     //METODO CONSTRUCTOR
-    public modeloPago (int id, modeloReserva reserva, double monto, Date fechaPago, String metodoPago){
+    public Pago (int id, Reserva reserva, double monto, Date fechaPago, String metodoPago){
         this.id = id;
         this.reserva = reserva;
         this.monto = monto;
@@ -19,14 +19,14 @@ public class modeloPago {
 
     //GETTERS
     public int getID(){return id;}
-    public modeloReserva getReserva(){return reserva;}
+    public Reserva getReserva(){return reserva;}
     public double getMonto(){return monto;}
     public Date getFechaPago(){return fechaPago;}
     public String getMetodoPago(){return metodoPago;}
 
     //SETTERS
     public void setID(int id){this. id = id;}
-    public void setReserva(modeloReserva reserva){this.reserva = reserva;}
+    public void setReserva(Reserva reserva){this.reserva = reserva;}
     public void setMonto(double monto){this.monto = monto;}
     public void setFechaPago(Date fechaPago){this.fechaPago = fechaPago;}
     public void setMetodoPago(String metodoPago){this.metodoPago = metodoPago;}

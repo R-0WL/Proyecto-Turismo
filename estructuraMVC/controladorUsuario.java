@@ -1,6 +1,6 @@
 public class controladorUsuario {
     private Usuario usuario;
-    private VistaInicioSesion vistaInicioSesion;
+    private vistaInicioSesion vistaInicioSesion;
 
     public void iniciarSesion(String correo, String contraseña) {
         // Lógica para iniciar sesión

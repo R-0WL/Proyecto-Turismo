@@ -1,6 +1,6 @@
 public class controladorPago {
     private Pago pago;
-    private VistaPago vistaPago;
+    private vistaPago vistaPago;
 
     public void procesarPago(int reservaId, String metodoPago) {
         // Lógica para procesar el pago

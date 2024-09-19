@@ -1,6 +1,8 @@
+import java.util.Date;
+
 public class controladorReservacion {
     private Reserva reserva;
-    private VistaReservacion vistaReservacion;
+    private vistaReservacion vistaReservacion;
 
     public void crearReservacion(Usuario usuario, Vehiculo vehiculo, Date fechaInicio, Date fechaFin) {
         // Lógica para crear una nueva reservación

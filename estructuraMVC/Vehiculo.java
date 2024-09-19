@@ -1,4 +1,4 @@
-public class modeloVehiculo {
+public class Vehiculo {
     private int id;
     private String marca;
     private String modelo;
@@ -10,7 +10,8 @@ public class modeloVehiculo {
     // Métodos: Getters, Setters, actualizarDisponibilidad, calcularPrecio
 
     //METODO CONSTRUCTOR
-    public modeloVehiculo(int id, String marca, String modelo, int año, String tipo, double precio, boolean disponible){
+
+    public Vehiculo(int id, String marca, String modelo, int año, String tipo, double precio, boolean disponible) {
         this.id = id;
         this.marca = marca;
         this.modelo = modelo;
@@ -19,6 +20,7 @@ public class modeloVehiculo {
         this.precio = precio;
         this.disponible = disponible;
     }
+    
 
     //GETTERS
     public int getID(){return id;}

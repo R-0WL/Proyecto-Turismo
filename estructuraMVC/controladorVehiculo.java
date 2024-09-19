@@ -1,6 +1,6 @@
 public class controladorVehiculo {
     private Vehiculo vehiculo;
-    private VistaBusquedaVehiculos vistaBusquedaVehiculos;
+    private vistaBusquedaVehiculos vistaBusquedaVehiculos;
 
     public void buscarVehiculos(String criteriosBusqueda) {
         // Lógica para buscar vehículos

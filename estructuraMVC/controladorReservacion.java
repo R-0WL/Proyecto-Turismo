@@ -1,18 +1,21 @@
 import java.util.Date;
-
 public class controladorReservacion {
-    private Reserva reserva;
+    private modeloReserva reserva;
     private vistaReservacion vistaReservacion;
 
-    public void crearReservacion(Usuario usuario, Vehiculo vehiculo, Date fechaInicio, Date fechaFin) {
-        // Lógica para crear una nueva reservación
+    public controladorReservacion(modeloReserva reserva, vistaReservacion vistaReservacion){
+        this.reserva = reserva;
+        this.vistaReservacion = vistaReservacion;
     }
-    
-    public void cancelarReservacion(int reservaId) {
-        // Lógica para cancelar una reservación
-    }
-    
-    public void modificarReservacion(Reserva reservaModificada) {
-        // Lógica para modificar una reservación existente
+
+    public void crearReservacion(modeloUsuario usuario, modeloVehiculo vehiculo, Date fechaInicio, Date fechaFin) {
+        if(usuario == null || vehiculo == null || fechaInicio == null || fechaFin == null){
+            vistaReservacion.mostrarError("Por favor, complete todos los campos requeridos.");
+            return;
+        }
+
+        modeloReserva nuevaReserva = new modeloReserva(0, null, null, null, null, 0);
+        reserva.guardarReserva(nuevaReserva);
+        vistaReservacion.mostrarMensajeExito("Reservación creada exitosamente.");
     }
 }

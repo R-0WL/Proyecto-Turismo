@@ -1,11 +1,13 @@
+import javax.swing.JOptionPane;
+
 public class vistaReservacion {
-    public void mostrarFormularioReservacion(Vehiculo vehiculo) {
+    public void mostrarFormularioReservacion(modeloVehiculo vehiculo) {
         // Código para mostrar el formulario de reservación
     }
-    public void mostrarConfirmacion(Reserva reserva) {
-        // Código para mostrar la confirmación de la reservación
+    public void mostrarConfirmacion(String message) {
+        JOptionPane.showConfirmDialog(null, message, "Creación exitosa", JOptionPane.INFORMATION_MESSAGE);
     }
     public void mostrarError(String mensaje) {
-        // Código para mostrar errores durante la reservación
+        JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
 }

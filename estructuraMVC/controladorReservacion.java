@@ -15,7 +15,7 @@ public class controladorReservacion {
         }
 
         modeloReserva nuevaReserva = new modeloReserva(0, null, null, null, null, 0);
-        reserva.guardarReserva(nuevaReserva);
-        vistaReservacion.mostrarMensajeExito("Reservación creada exitosamente.");
+        // FALTA IMPLEMENTAR QUE GUARDE LA NEUVA RESERVA EN LA BASE DE DATOS: reserva.guardarReserva(nuevaReserva);
+        vistaReservacion.mostrarConfirmacion("Reservación creada exitosamente.");
     }
 }

@@ -1,4 +1,4 @@
-import java.util.List;
+import java.util.ArrayList;
 
 public class controladorVehiculo {
     private modeloVehiculo vehiculo;
@@ -14,7 +14,9 @@ public class controladorVehiculo {
             vistaBusquedaVehiculos.mostrarError("Por favor, ingrese todos los criterios de búsqueda.");
             return;
         }
-        List<modeloVehiculo> resultados = vehiculo.buscarVehiculos(criteriosBusqueda);
+        // FALTA IMPLEMENTAR LA LÓGICA PARA BUSCAR EN LA BASE DE DATOS LOS VEHÍCULOS QUE CUMPLAN CON LAS CARACTERÍSTICAS INGRESADAS: List<modeloVehiculo> resultados = vehiculo.buscarVehiculos(criteriosBusqueda);
+        // SE DEJA UNA ARRAYLIST VACÍA PARA QUE EL CÓDIGO NO DE ERROR POR AHORA:
+        ArrayList<modeloVehiculo> resultados = new ArrayList<modeloVehiculo>();
         if(resultados.isEmpty()){
             vistaBusquedaVehiculos.mostrarError("No se encontraron vehiculos disponibles.");
         }
@@ -28,7 +30,9 @@ public class controladorVehiculo {
             vistaBusquedaVehiculos.mostrarError("El ID del vehículo no es válido.");
             return;
         }
-        modeloVehiculo vehiculoEncontrado = vehiculo.obtenerVehiculoPorID(vehiculoId);
+        // FALTA IMPLEMENTAR BUSCAR EN LA BASE DE DATOS Y RETORNAR EL VEHÍCULO CON ID: modeloVehiculo vehiculoEncontrado = vehiculo.obtenerVehiculoPorID(vehiculoId);
+        // POR AHORA ESTÁ ASIGNADO A UN VEHÍCULO CUALQUIERA PARA QUE EL CÓDIGO NO TIRE ERRORES.
+        modeloVehiculo vehiculoEncontrado = null;
         if(vehiculoEncontrado != null){
             vistaBusquedaVehiculos.mostrarDetallesVehiculo(vehiculoEncontrado);
         }

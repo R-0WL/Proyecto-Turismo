@@ -1,4 +1,4 @@
-public class Usuario {
+public class modeloUsuario {
     private int id;
     private String nombre;
     private String correo;
@@ -8,7 +8,7 @@ public class Usuario {
     // Métodos: Getters, Setters, registrar, iniciarSesion, actualizarPerfil, cambiarContraseña
     
     //METODO CONSTRUCTOR
-    public Usuario ( int id, String nombre, String correo, String contraseña, String tipoUsuario){
+    public modeloUsuario ( int id, String nombre, String correo, String contraseña, String tipoUsuario){
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;

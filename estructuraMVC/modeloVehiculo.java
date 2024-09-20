@@ -1,4 +1,4 @@
-public class Vehiculo {
+public class modeloVehiculo {
     private int id;
     private String marca;
     private String modelo;
@@ -11,7 +11,7 @@ public class Vehiculo {
 
     //METODO CONSTRUCTOR
 
-    public Vehiculo(int id, String marca, String modelo, int año, String tipo, double precio, boolean disponible) {
+    public modeloVehiculo(int id, String marca, String modelo, int año, String tipo, double precio, boolean disponible) {
         this.id = id;
         this.marca = marca;
         this.modelo = modelo;

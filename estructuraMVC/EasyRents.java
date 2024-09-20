@@ -1,10 +1,15 @@
 import java.awt.EventQueue;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
 public class EasyRents {
 
 	private static JFrame frmEasyrents;
+	private static ArrayList<modeloReserva> listaReservas;
+	private static ArrayList<modeloPago> listaPagos;
+	private static ArrayList<modeloUsuario> listaUsuarios;
+	private static ArrayList<modeloVehiculo> listaVehiculos;
 
 	/**
 	 * Launch the application.
@@ -13,7 +18,6 @@ public class EasyRents {
 		frmEasyrents = new JFrame();
 		frmEasyrents.setVisible(true);
 		frmEasyrents.setTitle("EasyRents");
-		frmEasyrents.setAlwaysOnTop(true);
 		frmEasyrents.setSize(360, 640);
 		frmEasyrents.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmEasyrents.setLocationRelativeTo(null);

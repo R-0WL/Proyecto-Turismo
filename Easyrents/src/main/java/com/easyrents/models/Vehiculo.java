@@ -7,8 +7,6 @@ public class Vehiculo {
     private double precio;
     private boolean disponible;
 
-    // Métodos: Getters, Setters, actualizarDisponibilidad, calcularPrecio
-
     //METODO CONSTRUCTOR
 
     public Vehiculo(int id, String marca, String modelo, int año, String tipo, double precio, boolean disponible) {
@@ -21,7 +19,6 @@ public class Vehiculo {
         this.disponible = disponible;
     }
     
-
     //GETTERS
     public int getID(){return id;}
     public String getMarca(){return marca;}

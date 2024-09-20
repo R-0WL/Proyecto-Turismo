@@ -4,8 +4,6 @@ public class Usuario {
     private String correo;
     private String contraseña;
     private String tipoUsuario;
-
-    // Métodos: Getters, Setters, registrar, iniciarSesion, actualizarPerfil, cambiarContraseña
     
     //METODO CONSTRUCTOR
     public Usuario ( int id, String nombre, String correo, String contraseña, String tipoUsuario){
@@ -29,7 +27,4 @@ public class Usuario {
     public void setCorreo(String correo){this.correo = correo;}
     public void setContraseña(String contraseña){this.contraseña = contraseña;}
     public void setTipoUsuario(String tipoUsuario){this.tipoUsuario = tipoUsuario;}
-    
 }
-
-

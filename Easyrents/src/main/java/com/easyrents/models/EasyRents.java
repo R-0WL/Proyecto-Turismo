@@ -3,7 +3,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 
 public class EasyRents {
-
+// porque hay un metodo main en una carpeta de modelos!!!?
+// arreglar lo mas rapido posible
 	private static JFrame frmEasyrents;
 
 	/**

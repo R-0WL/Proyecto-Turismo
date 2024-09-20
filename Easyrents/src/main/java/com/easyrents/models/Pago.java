@@ -6,8 +6,6 @@ public class Pago {
     private Date fechaPago;
     private String metodoPago;
 
-    // Métodos: Getters, Setters, procesarPago, generarFactura
-
     //METODO CONSTRUCTOR
     public Pago (int id, Reserva reserva, double monto, Date fechaPago, String metodoPago){
         this.id = id;
@@ -30,6 +28,4 @@ public class Pago {
     public void setMonto(double monto){this.monto = monto;}
     public void setFechaPago(Date fechaPago){this.fechaPago = fechaPago;}
     public void setMetodoPago(String metodoPago){this.metodoPago = metodoPago;}
-
-
 }

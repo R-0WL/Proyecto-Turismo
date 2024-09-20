@@ -216,10 +216,12 @@ public class vistaInicioSesion {
 		lblNewLabel_1_1_1_1_3_1.setBounds(10, 333, 172, 29);
 		frame.getContentPane().add(lblNewLabel_1_1_1_1_3_1);
 		
-		JComboBox comboBox = new JComboBox();
+		@SuppressWarnings("rawtypes")
+        JComboBox comboBox = new JComboBox();
 		comboBox.setToolTipText("Escoja una de las opciones siguientes");
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Turismo (cualquier índole)", "Trabajo", "Estudios", "Visitas a Familiares", "Residencia Temporal", "Otro (Especifique)"}));
 		comboBox.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
+        comboBox.setBackground(Color.WHITE);
 		comboBox.setBounds(170, 322, 164, 29);
 		frame.getContentPane().add(comboBox);
 
@@ -236,6 +238,7 @@ public class vistaInicioSesion {
 
         JButton crearCuentaBtn = new JButton("Crear Cuenta");
 		crearCuentaBtn.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 22));
+        crearCuentaBtn.setBackground(Color.WHITE);
 		crearCuentaBtn.setBounds(99, 421, 155, 54);
         crearCuentaBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
@@ -295,7 +298,7 @@ public class vistaInicioSesion {
     public void redireccionarDashboard(JFrame frame) {
         frame.getContentPane().removeAll();
         frame.repaint();
-
-
+        
+        
     }
 }

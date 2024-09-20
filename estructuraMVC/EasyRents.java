@@ -11,6 +11,14 @@ public class EasyRents {
 	 */
 	public static void main(String[] args) {
 		frmEasyrents = new JFrame();
+		frmEasyrents.setVisible(true);
+		frmEasyrents.setTitle("EasyRents");
+		frmEasyrents.setAlwaysOnTop(true);
+		frmEasyrents.setSize(360, 640);
+		frmEasyrents.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmEasyrents.setLocationRelativeTo(null);
+        frmEasyrents.setLayout(null);
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

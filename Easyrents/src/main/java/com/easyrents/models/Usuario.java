@@ -27,4 +27,11 @@ public class Usuario {
     public void setCorreo(String correo){this.correo = correo;}
     public void setContraseña(String contraseña){this.contraseña = contraseña;}
     public void setTipoUsuario(String tipoUsuario){this.tipoUsuario = tipoUsuario;}
+
+    //TOSTRING
+    @Override
+    public String toString() {
+        return "Usuario [id=" + id + ", nombre=" + nombre + ", correo=" + correo + ", contraseña=" + contraseña
+                + ", tipoUsuario=" + tipoUsuario + "]";
+    }
 }

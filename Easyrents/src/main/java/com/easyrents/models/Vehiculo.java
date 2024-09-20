@@ -8,7 +8,6 @@ public class Vehiculo {
     private boolean disponible;
 
     //METODO CONSTRUCTOR
-
     public Vehiculo(int id, String marca, String modelo, int año, String tipo, double precio, boolean disponible) {
         this.id = id;
         this.marca = marca;
@@ -36,4 +35,11 @@ public class Vehiculo {
     public void setTipo(String tipo){this.tipo = tipo;}
     public void setPrecio(double precio){this.precio = precio;}
     public void setDisponible(boolean disponible){this.disponible = disponible;}
+
+    //TOSTRING
+    @Override
+    public String toString() {
+        return "Vehiculo [id=" + id + ", marca=" + marca + ", modelo=" + modelo + ", año=" + año + ", tipo=" + tipo
+                + ", precio=" + precio + ", disponible=" + disponible + "]";
+    }
 }

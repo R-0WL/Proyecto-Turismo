@@ -28,4 +28,13 @@ public class Pago {
     public void setMonto(double monto){this.monto = monto;}
     public void setFechaPago(Date fechaPago){this.fechaPago = fechaPago;}
     public void setMetodoPago(String metodoPago){this.metodoPago = metodoPago;}
+
+    //TOSTRING
+    @Override
+    public String toString() {
+        return "Pago [id=" + id + ", reserva=" + reserva + ", monto=" + monto + ", fechaPago=" + fechaPago
+                + ", metodoPago=" + metodoPago + "]";
+    }
+
+    
 }

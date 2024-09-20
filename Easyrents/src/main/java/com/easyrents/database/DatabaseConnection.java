@@ -1,5 +1,13 @@
-package main.java.com.easyrents.database;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class DatabaseConnection {
-    //código acá
+    private static final String URL = "jdbc:postgresql://localhost:5432/easyrents";
+    private static final String USER = "tu_usuario";
+    private static final String PASSWORD = "tu_contraseña";
+
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL, USER, PASSWORD);
+    }
 }

@@ -11,9 +11,6 @@ public class EasyRents {
 	private static ArrayList<modeloUsuario> listaUsuarios;
 	private static ArrayList<modeloVehiculo> listaVehiculos;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		frmEasyrents = new JFrame();
 		frmEasyrents.setVisible(true);

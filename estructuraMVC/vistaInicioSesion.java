@@ -3,6 +3,8 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
@@ -101,10 +103,19 @@ public class vistaInicioSesion {
             boolean credentialsValidated = true;
             @Override
             public void actionPerformed(ActionEvent e){
-                if(credentialsValidated){
-                    redireccionarDashboard(frame);
-                }else{
+                if((txtCorreoElectrnico.getText().replaceAll("\\s+","").equals("")) || (passwordField.getPassword().toString().replaceAll("\\s+","").equals(""))){
+                    mostrarError("Debe de ingresar un correo y su contraseña respectiva.");
+                    return;
+                }else if(!credentialsValidated){
                     mostrarError("Las credenciales ingresadas no son correctas, vuelva a intentar.");
+                    return;
+                }else if(!txtCorreoElectrnico.getText().contains("@")){
+                    mostrarError("Debe de ingresar una dirección de correo válida");
+                    return;                    
+                }else{
+                    // USUARIO DE PRUEBA: (FALTA HACER LA LOGIN CON LA BASE DE DATOS Y VALIDAR)
+                    modeloUsuario usuarioActual = new modeloUsuario(0000, "Santiago Cordero Quirós", "cor24472@uvg.edu.gt", "pepe123", "Turismo");
+                    redireccionarDashboard(frame, usuarioActual);
                 }
             }
         });
@@ -215,17 +226,8 @@ public class vistaInicioSesion {
 		lblNewLabel_1_1_1_1_3_1.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
 		lblNewLabel_1_1_1_1_3_1.setBounds(10, 333, 172, 29);
 		frame.getContentPane().add(lblNewLabel_1_1_1_1_3_1);
-		
-		@SuppressWarnings("rawtypes")
-        JComboBox comboBox = new JComboBox();
-		comboBox.setToolTipText("Escoja una de las opciones siguientes");
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Turismo (cualquier índole)", "Trabajo", "Estudios", "Visitas a Familiares", "Residencia Temporal", "Otro (Especifique)"}));
-		comboBox.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
-        comboBox.setBackground(Color.WHITE);
-		comboBox.setBounds(170, 322, 164, 29);
-		frame.getContentPane().add(comboBox);
 
-		JLabel razonExtraLbl = new JLabel("Especifique:");
+        JLabel razonExtraLbl = new JLabel("Especifique:");
 		razonExtraLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 15));
 		razonExtraLbl.setVisible(false);
 		razonExtraLbl.setBounds(24, 372, 80, 20);
@@ -233,13 +235,33 @@ public class vistaInicioSesion {
 		
 		JTextField razonExtra = new JTextField();
 		razonExtra.setVisible(false);
-		razonExtra.setBounds(117, 371, 217, 29);
+		razonExtra.setBounds(105, 371, 217, 29);
 		frame.getContentPane().add(razonExtra);
+		
+		@SuppressWarnings("rawtypes")
+        JComboBox comboBox = new JComboBox();
+		comboBox.setToolTipText("Escoja una de las opciones siguientes");
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Turismo (cualquier índole)", "Trabajo", "Estudios", "Visitas a Familiares", "Residencia Temporal", "Otro (Especifique)"}));
+		comboBox.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
+        comboBox.setBackground(Color.WHITE);
+		comboBox.setBounds(162, 321, 170, 29);
+        comboBox.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                if(comboBox.getSelectedItem().toString() == "Otro (Especifique)"){
+                    razonExtra.setVisible(true);
+                    razonExtraLbl.setVisible(true);
+                }else{
+                    razonExtra.setVisible(false);
+                    razonExtraLbl.setVisible(false);
+                }
+            }
+        });
+		frame.getContentPane().add(comboBox);
 
         JButton crearCuentaBtn = new JButton("Crear Cuenta");
 		crearCuentaBtn.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 22));
         crearCuentaBtn.setBackground(Color.WHITE);
-		crearCuentaBtn.setBounds(99, 421, 155, 54);
+		crearCuentaBtn.setBounds(91, 421, 165, 54);
         crearCuentaBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 ArrayList<String> values = new ArrayList<>();
@@ -268,20 +290,14 @@ public class vistaInicioSesion {
                     return;
                 }
 
-                boolean objetoOtroEscogido = (values.get(4) == "Otro (Especifique)");
-                if(objetoOtroEscogido && !(razonExtra.isVisible() || razonExtraLbl.isVisible())){
-                    JOptionPane.showMessageDialog(null, "Por favor llene el nuevo campo emergente.", "Atención", JOptionPane.INFORMATION_MESSAGE);
-                    razonExtra.setVisible(true);
-                    razonExtraLbl.setVisible(true);
-                    return;
-                }else if(objetoOtroEscogido && razonExtra.isVisible()){
+                if(razonExtra.isVisible()){
                     if (razonExtra.getText().replaceAll("\\s+","").equals("")){
-                        mostrarError("Debe de llenar el campo emergente.");
+                        mostrarError("Debe de llenar todos los campos solicitados.");
                         return;
                     }else{
                         values.add(razonExtra.getText());
                     }
-                    // FALTA IMPLEMENTAR LÓGICA DE CREAR USUARIO.
+                    // FALTA IMPLEMENTAR LÓGICA DE CREAR USUARIO Y GUARDARLO EN LA BASE DE DATOS.
                     mostrarExito("Se ha creado su cuenta exitosamente!");
                     return;
                 }else{
@@ -295,10 +311,184 @@ public class vistaInicioSesion {
 		
     }
 
-    public void redireccionarDashboard(JFrame frame) {
+    public void redireccionarDashboard(JFrame frame, modeloUsuario currentUsuario) {
         frame.getContentPane().removeAll();
         frame.repaint();
         
+        JLabel cerrarSesionLbl = new JLabel("Cerrar Sesión");
+		cerrarSesionLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
+		cerrarSesionLbl.setBounds(254, 11, 80, 14);
+        cerrarSesionLbl.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                mostrarFormulario(frame);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                cerrarSesionLbl.setForeground(Color.GRAY);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                cerrarSesionLbl.setForeground(Color.BLACK);
+            }
+        });
+		frame.getContentPane().add(cerrarSesionLbl);
+
+        frame.getContentPane().setLayout(null);
+		frame.setLocationRelativeTo(null);
+		
+		JLabel franjaLbl = new JLabel("");
+		franjaLbl.setBackground(new Color(213, 0, 0));
+        franjaLbl.setVisible(true);
+        franjaLbl.setOpaque(true);
+		franjaLbl.setBounds(0, 537, 344, 64);
+		frame.getContentPane().add(franjaLbl);
+		
+		Image img = new ImageIcon(this.getClass().getResource("/img/profileIconSmall.png")).getImage();
+        Image img_ = new ImageIcon(this.getClass().getResource("/img/profileIconSmallHover.png")).getImage();
+		JButton perfilBtn = new JButton("");
+		perfilBtn.setBounds(244, 545, 50, 50);
+		perfilBtn.setBorderPainted(false);
+		perfilBtn.setContentAreaFilled(false);
+		perfilBtn.setIcon(new ImageIcon(img));
+        perfilBtn.setRolloverIcon(new ImageIcon(img_));
+        perfilBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent a){
+                redireccionarPerfil(frame, currentUsuario);
+            }
+        });
+		frame.getContentPane().add(perfilBtn);
+		
+		Image img0 = new ImageIcon(this.getClass().getResource("/img/menuIcon.png")).getImage();
+        Image img01 = new ImageIcon(this.getClass().getResource("/img/menuIconHover.png")).getImage();
+		JButton verReservasBtn = new JButton("");
+		verReservasBtn.setBounds(41, 545, 50, 50);
+		verReservasBtn.setBorderPainted(false);
+		verReservasBtn.setContentAreaFilled(false);
+		verReservasBtn.setIcon(new ImageIcon(img0));
+		verReservasBtn.setRolloverIcon(new ImageIcon(img01));
+        verReservasBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent a){
+                // IMPLEMENTAR PANTALLA DE VISTA DE RESERVAS ACTUALES
+            }
+        });
+		frame.getContentPane().add(verReservasBtn);
+		
+		Image img1 = new ImageIcon(this.getClass().getResource("/img/homeIcon.png")).getImage();
+        Image img11 = new ImageIcon(this.getClass().getResource("/img/homeIconHover.png")).getImage();
+		JButton homeBtn = new JButton();
+		homeBtn.setBounds(141, 545, 50, 50);
+		homeBtn.setBorderPainted(false);
+		homeBtn.setContentAreaFilled(false);
+		homeBtn.setIcon(new ImageIcon(img1));
+		homeBtn.setRolloverIcon(new ImageIcon(img11));
+		frame.getContentPane().add(homeBtn);
+		
+		JLabel dashboardTitleLbl = new JLabel("Página Principal");
+		dashboardTitleLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 23));
+		dashboardTitleLbl.setBounds(91, 37, 166, 38);
+		frame.getContentPane().add(dashboardTitleLbl);
+
+        JLabel optionLbl = new JLabel("¿Qué tipo de vehículo desea reservar hoy?");
+		optionLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 16));
+		optionLbl.setBounds(28, 86, 288, 38);
+		frame.getContentPane().add(optionLbl);
+		
+		JComboBox vehiculoDropDown = new JComboBox();
+		vehiculoDropDown.setModel(new DefaultComboBoxModel(new String[] {"Motocicleta", "Automóvil particular", "Bus particular"}));
+		vehiculoDropDown.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 16));
+		vehiculoDropDown.setBounds(74, 135, 191, 30);
+		frame.getContentPane().add(vehiculoDropDown);
+
+        // EN EL ESPACIO EN BLANCO DE ESTA PESTAÑA FALTA RETORNAR TODAVÍA TODOS LOS VEHÍCULOS QUE APLIQUEN DE LA BASE DE DATOS Y MOSTRAR CADA UNO CON
+        // UN LABEL.
+
+        frame.getContentPane().setComponentZOrder(franjaLbl, frame.getContentPane().getComponentCount() - 1);
+    }
+
+    public void redireccionarPerfil(JFrame frame, modeloUsuario currentUsuario){
+        frame.getContentPane().removeAll();
+        frame.repaint();
+
+        JLabel cerrarSesionLbl = new JLabel("Cerrar Sesión");
+		cerrarSesionLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
+		cerrarSesionLbl.setBounds(254, 11, 80, 14);
+        cerrarSesionLbl.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                mostrarFormulario(frame);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                cerrarSesionLbl.setForeground(Color.GRAY);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                cerrarSesionLbl.setForeground(Color.BLACK);
+            }
+        });
+		frame.getContentPane().add(cerrarSesionLbl);
+
+        JLabel franjaLbl = new JLabel("");
+		franjaLbl.setBackground(new Color(213, 0, 0));
+        franjaLbl.setVisible(true);
+        franjaLbl.setOpaque(true);
+		franjaLbl.setBounds(0, 537, 344, 64);
         
+		frame.getContentPane().add(franjaLbl);
+
+        Image img = new ImageIcon(this.getClass().getResource("/img/profileIconSmall.png")).getImage();
+        Image img_ = new ImageIcon(this.getClass().getResource("/img/profileIconSmallHover.png")).getImage();
+		JButton perfilBtn = new JButton("");
+		perfilBtn.setBounds(244, 545, 50, 50);
+		perfilBtn.setBorderPainted(false);
+		perfilBtn.setContentAreaFilled(false);
+		perfilBtn.setIcon(new ImageIcon(img));
+        perfilBtn.setRolloverIcon(new ImageIcon(img_));
+		frame.getContentPane().add(perfilBtn);
+		
+		Image img0 = new ImageIcon(this.getClass().getResource("/img/menuIcon.png")).getImage();
+        Image img01 = new ImageIcon(this.getClass().getResource("/img/menuIconHover.png")).getImage();
+		JButton verReservasBtn = new JButton("");
+		verReservasBtn.setBounds(41, 545, 50, 50);
+		verReservasBtn.setBorderPainted(false);
+		verReservasBtn.setContentAreaFilled(false);
+		verReservasBtn.setIcon(new ImageIcon(img0));
+		verReservasBtn.setRolloverIcon(new ImageIcon(img01));
+		frame.getContentPane().add(verReservasBtn);
+		
+		Image img1 = new ImageIcon(this.getClass().getResource("/img/homeIcon.png")).getImage();
+        Image img11 = new ImageIcon(this.getClass().getResource("/img/homeIconHover.png")).getImage();
+		JButton homeBtn = new JButton();
+		homeBtn.setBounds(141, 545, 50, 50);
+		homeBtn.setBorderPainted(false);
+		homeBtn.setContentAreaFilled(false);
+		homeBtn.setIcon(new ImageIcon(img1));
+		homeBtn.setRolloverIcon(new ImageIcon(img11));
+		frame.getContentPane().add(homeBtn);
+
+        frame.getContentPane().setComponentZOrder(franjaLbl, frame.getContentPane().getComponentCount() - 1);
     }
 }

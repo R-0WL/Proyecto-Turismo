@@ -45,14 +45,14 @@ public class vistaInicioSesion {
 		frame.getContentPane().add(visitanosLbl);
 		
 		JLabel imgTwitter = new JLabel("");
-		Image img = new ImageIcon(this.getClass().getResource("/img/twitter-icon.png")).getImage();
-		imgTwitter.setIcon(new ImageIcon(img));
+		Image imgTwit = new ImageIcon(this.getClass().getResource("/img/twitter-icon.png")).getImage();
+		imgTwitter.setIcon(new ImageIcon(imgTwit));
 		imgTwitter.setBounds(180, 518, 50, 50);
 		frame.getContentPane().add(imgTwitter);
 		
 		JLabel imgInsta = new JLabel("");
-		Image img2 = new ImageIcon(this.getClass().getResource("/img/insta-icon.png")).getImage();
-		imgInsta.setIcon(new ImageIcon(img2));
+		Image imgIg = new ImageIcon(this.getClass().getResource("/img/insta-icon.png")).getImage();
+		imgInsta.setIcon(new ImageIcon(imgIg));
 		imgInsta.setBounds(110, 518, 50, 50);
 		frame.getContentPane().add(imgInsta);
 		
@@ -122,14 +122,14 @@ public class vistaInicioSesion {
 		frame.getContentPane().add(loginBtn_1);
 
         JLabel logoImageLabel = new JLabel();
-		Image img4 = new ImageIcon(this.getClass().getResource("/img/easyLogo95x95.png")).getImage();
-		logoImageLabel.setIcon(new ImageIcon(img4));
+		Image logoImage = new ImageIcon(this.getClass().getResource("/img/easyLogo95x95.png")).getImage();
+		logoImageLabel.setIcon(new ImageIcon(logoImage));
 		logoImageLabel.setBounds(116, 7, 115, 95);
 		frame.getContentPane().add(logoImageLabel);
 		
 		JLabel logoNameImgLbl = new JLabel("");
-		Image img5 = new ImageIcon(this.getClass().getResource("/img/easyRents177x50.png")).getImage();
-		logoNameImgLbl.setIcon(new ImageIcon(img5));
+		Image logoNameImg = new ImageIcon(this.getClass().getResource("/img/easyRents177x50.png")).getImage();
+		logoNameImgLbl.setIcon(new ImageIcon(logoNameImg));
 		logoNameImgLbl.setBounds(84, 106, 177, 50);
 		frame.getContentPane().add(logoNameImgLbl);
 
@@ -165,25 +165,25 @@ public class vistaInicioSesion {
 		titleLbl.setBounds(78, 11, 189, 45);
 		frame.add(titleLbl);
 
-        JLabel lblNewLabel_1 = new JLabel("Llene los siguientes campos para crear su cuenta:");
-		lblNewLabel_1.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
-		lblNewLabel_1.setBounds(29, 47, 292, 29);
-		frame.getContentPane().add(lblNewLabel_1);
+        JLabel instruccionesLbl = new JLabel("Llene los siguientes campos para crear su cuenta:");
+		instruccionesLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
+		instruccionesLbl.setBounds(29, 47, 292, 29);
+		frame.getContentPane().add(instruccionesLbl);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Nombre:");
-		lblNewLabel_1_1.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
-		lblNewLabel_1_1.setBounds(10, 109, 94, 29);
-		frame.getContentPane().add(lblNewLabel_1_1);
+		JLabel nombreLbl = new JLabel("Nombre:");
+		nombreLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
+		nombreLbl.setBounds(10, 109, 94, 29);
+		frame.getContentPane().add(nombreLbl);
 		
 		JTextField nombreEntry = new JTextField();
 		nombreEntry.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
 		nombreEntry.setBounds(98, 111, 236, 29);
 		frame.getContentPane().add(nombreEntry);
 		
-		JLabel lblNewLabel_1_1_1 = new JLabel("Correo:");
-		lblNewLabel_1_1_1.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
-		lblNewLabel_1_1_1.setBounds(10, 160, 52, 29);
-		frame.getContentPane().add(lblNewLabel_1_1_1);
+		JLabel correoLbl = new JLabel("Correo:");
+		correoLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
+		correoLbl.setBounds(10, 160, 52, 29);
+		frame.getContentPane().add(correoLbl);
 		
 		JTextField correoEntry = new JTextField();
 		correoEntry.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
@@ -191,10 +191,10 @@ public class vistaInicioSesion {
 		correoEntry.setBounds(98, 162, 236, 29);
 		frame.getContentPane().add(correoEntry);
 		
-		JLabel lblNewLabel_1_1_1_1 = new JLabel("Contraseña:");
-		lblNewLabel_1_1_1_1.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
-		lblNewLabel_1_1_1_1.setBounds(10, 272, 94, 29);
-		frame.getContentPane().add(lblNewLabel_1_1_1_1);
+		JLabel contrasenaLabel = new JLabel("Contraseña:");
+		contrasenaLabel.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
+		contrasenaLabel.setBounds(10, 272, 94, 29);
+		frame.getContentPane().add(contrasenaLabel);
 		
 		JPasswordField passwordField = new JPasswordField();
 		passwordField.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
@@ -207,25 +207,25 @@ public class vistaInicioSesion {
 		passwordFieldConfirmar.setBounds(98, 265, 236, 26);
 		frame.getContentPane().add(passwordFieldConfirmar);
 		
-		JLabel lblNewLabel_1_1_1_1_1 = new JLabel("Confirmar");
-		lblNewLabel_1_1_1_1_1.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
-		lblNewLabel_1_1_1_1_1.setBounds(10, 251, 94, 29);
-		frame.getContentPane().add(lblNewLabel_1_1_1_1_1);
+		JLabel confirmarContLbl1 = new JLabel("Confirmar");
+		confirmarContLbl1.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
+		confirmarContLbl1.setBounds(10, 251, 94, 29);
+		frame.getContentPane().add(confirmarContLbl1);
 		
-		JLabel lblNewLabel_1_1_1_1_2 = new JLabel("Contraseña:");
-		lblNewLabel_1_1_1_1_2.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
-		lblNewLabel_1_1_1_1_2.setBounds(10, 211, 94, 29);
-		frame.getContentPane().add(lblNewLabel_1_1_1_1_2);
+		JLabel confirmarContLbl2 = new JLabel("Contraseña:");
+		confirmarContLbl2.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
+		confirmarContLbl2.setBounds(10, 211, 94, 29);
+		frame.getContentPane().add(confirmarContLbl2);
 		
-		JLabel lblNewLabel_1_1_1_1_3 = new JLabel("¿Cuál es su motivo para");
-		lblNewLabel_1_1_1_1_3.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
-		lblNewLabel_1_1_1_1_3.setBounds(10, 312, 172, 29);
-		frame.getContentPane().add(lblNewLabel_1_1_1_1_3);
+		JLabel motivoLbl1 = new JLabel("¿Cuál es su motivo para");
+		motivoLbl1.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
+		motivoLbl1.setBounds(10, 312, 172, 29);
+		frame.getContentPane().add(motivoLbl1);
 		
-		JLabel lblNewLabel_1_1_1_1_3_1 = new JLabel("utilizar nuestra app?");
-		lblNewLabel_1_1_1_1_3_1.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
-		lblNewLabel_1_1_1_1_3_1.setBounds(10, 333, 172, 29);
-		frame.getContentPane().add(lblNewLabel_1_1_1_1_3_1);
+		JLabel motivoLbl2 = new JLabel("utilizar nuestra app?");
+		motivoLbl2.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
+		motivoLbl2.setBounds(10, 333, 172, 29);
+		frame.getContentPane().add(motivoLbl2);
 
         JLabel razonExtraLbl = new JLabel("Especifique:");
 		razonExtraLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 15));
@@ -239,15 +239,15 @@ public class vistaInicioSesion {
 		frame.getContentPane().add(razonExtra);
 		
 		@SuppressWarnings("rawtypes")
-        JComboBox comboBox = new JComboBox();
-		comboBox.setToolTipText("Escoja una de las opciones siguientes");
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Turismo (cualquier índole)", "Trabajo", "Estudios", "Visitas a Familiares", "Residencia Temporal", "Otro (Especifique)"}));
-		comboBox.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
-        comboBox.setBackground(Color.WHITE);
-		comboBox.setBounds(162, 321, 170, 29);
-        comboBox.addActionListener(new ActionListener() {
+        JComboBox tipoUsuarioDropDown = new JComboBox();
+		tipoUsuarioDropDown.setToolTipText("Escoja una de las opciones siguientes");
+		tipoUsuarioDropDown.setModel(new DefaultComboBoxModel(new String[] {"Turismo (cualquier índole)", "Trabajo", "Estudios", "Visitas a Familiares", "Residencia Temporal", "Otro (Especifique)"}));
+		tipoUsuarioDropDown.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
+        tipoUsuarioDropDown.setBackground(Color.WHITE);
+		tipoUsuarioDropDown.setBounds(162, 321, 170, 29);
+        tipoUsuarioDropDown.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                if(comboBox.getSelectedItem().toString() == "Otro (Especifique)"){
+                if(tipoUsuarioDropDown.getSelectedItem().toString() == "Otro (Especifique)"){
                     razonExtra.setVisible(true);
                     razonExtraLbl.setVisible(true);
                 }else{
@@ -256,7 +256,7 @@ public class vistaInicioSesion {
                 }
             }
         });
-		frame.getContentPane().add(comboBox);
+		frame.getContentPane().add(tipoUsuarioDropDown);
 
         JButton crearCuentaBtn = new JButton("Crear Cuenta");
 		crearCuentaBtn.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 22));
@@ -269,7 +269,7 @@ public class vistaInicioSesion {
                 values.add(correoEntry.getText());
                 values.add(new String(passwordField.getPassword()));
                 values.add(new String(passwordFieldConfirmar.getPassword()));
-                values.add(comboBox.getSelectedItem().toString());
+                values.add(tipoUsuarioDropDown.getSelectedItem().toString());
 
                 for(String s : values){
                     if (s.replaceAll("\\s+","").equals("")){
@@ -355,14 +355,14 @@ public class vistaInicioSesion {
 		franjaLbl.setBounds(0, 537, 344, 64);
 		frame.getContentPane().add(franjaLbl);
 		
-		Image img = new ImageIcon(this.getClass().getResource("/img/profileIconSmall.png")).getImage();
-        Image img_ = new ImageIcon(this.getClass().getResource("/img/profileIconSmallHover.png")).getImage();
+		Image profileImg = new ImageIcon(this.getClass().getResource("/img/profileIconSmall.png")).getImage();
+        Image profileImgHover = new ImageIcon(this.getClass().getResource("/img/profileIconSmallHover.png")).getImage();
 		JButton perfilBtn = new JButton("");
 		perfilBtn.setBounds(244, 545, 50, 50);
 		perfilBtn.setBorderPainted(false);
 		perfilBtn.setContentAreaFilled(false);
-		perfilBtn.setIcon(new ImageIcon(img));
-        perfilBtn.setRolloverIcon(new ImageIcon(img_));
+		perfilBtn.setIcon(new ImageIcon(profileImg));
+        perfilBtn.setRolloverIcon(new ImageIcon(profileImgHover));
         perfilBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent a){
                 redireccionarPerfil(frame, currentUsuario);
@@ -370,14 +370,14 @@ public class vistaInicioSesion {
         });
 		frame.getContentPane().add(perfilBtn);
 		
-		Image img0 = new ImageIcon(this.getClass().getResource("/img/menuIcon.png")).getImage();
-        Image img01 = new ImageIcon(this.getClass().getResource("/img/menuIconHover.png")).getImage();
+		Image verReservasImg = new ImageIcon(this.getClass().getResource("/img/menuIcon.png")).getImage();
+        Image verReservasImgHover = new ImageIcon(this.getClass().getResource("/img/menuIconHover.png")).getImage();
 		JButton verReservasBtn = new JButton("");
 		verReservasBtn.setBounds(41, 545, 50, 50);
 		verReservasBtn.setBorderPainted(false);
 		verReservasBtn.setContentAreaFilled(false);
-		verReservasBtn.setIcon(new ImageIcon(img0));
-		verReservasBtn.setRolloverIcon(new ImageIcon(img01));
+		verReservasBtn.setIcon(new ImageIcon(verReservasImg));
+		verReservasBtn.setRolloverIcon(new ImageIcon(verReservasImgHover));
         verReservasBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent a){
                 // IMPLEMENTAR PANTALLA DE VISTA DE RESERVAS ACTUALES
@@ -385,14 +385,14 @@ public class vistaInicioSesion {
         });
 		frame.getContentPane().add(verReservasBtn);
 		
-		Image img1 = new ImageIcon(this.getClass().getResource("/img/homeIcon.png")).getImage();
-        Image img11 = new ImageIcon(this.getClass().getResource("/img/homeIconHover.png")).getImage();
+		Image homeImg = new ImageIcon(this.getClass().getResource("/img/homeIcon.png")).getImage();
+        Image homeImgHover = new ImageIcon(this.getClass().getResource("/img/homeIconHover.png")).getImage();
 		JButton homeBtn = new JButton();
 		homeBtn.setBounds(141, 545, 50, 50);
 		homeBtn.setBorderPainted(false);
 		homeBtn.setContentAreaFilled(false);
-		homeBtn.setIcon(new ImageIcon(img1));
-		homeBtn.setRolloverIcon(new ImageIcon(img11));
+		homeBtn.setIcon(new ImageIcon(homeImg));
+		homeBtn.setRolloverIcon(new ImageIcon(homeImgHover));
 		frame.getContentPane().add(homeBtn);
 		
 		JLabel dashboardTitleLbl = new JLabel("Página Principal");
@@ -405,8 +405,24 @@ public class vistaInicioSesion {
 		optionLbl.setBounds(28, 86, 288, 38);
 		frame.getContentPane().add(optionLbl);
 		
+        @SuppressWarnings("rawtypes")
 		JComboBox vehiculoDropDown = new JComboBox();
 		vehiculoDropDown.setModel(new DefaultComboBoxModel(new String[] {"Motocicleta", "Automóvil particular", "Bus particular"}));
+        vehiculoDropDown.setBackground(Color.WHITE);
+        vehiculoDropDown.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                switch(vehiculoDropDown.getSelectedItem().toString()){
+                    case "Motocicleta":
+                        break;
+                    case "Automóvil particular":
+                        break;
+                    case "Bus particular":
+                        break;
+                    
+                }
+            }
+        });
 		vehiculoDropDown.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 16));
 		vehiculoDropDown.setBounds(74, 135, 191, 30);
 		frame.getContentPane().add(vehiculoDropDown);
@@ -459,34 +475,34 @@ public class vistaInicioSesion {
         
 		frame.getContentPane().add(franjaLbl);
 
-        Image img = new ImageIcon(this.getClass().getResource("/img/profileIconSmall.png")).getImage();
-        Image img_ = new ImageIcon(this.getClass().getResource("/img/profileIconSmallHover.png")).getImage();
+        Image profileImg = new ImageIcon(this.getClass().getResource("/img/profileIconSmall.png")).getImage();
+        Image profileImgHover = new ImageIcon(this.getClass().getResource("/img/profileIconSmallHover.png")).getImage();
 		JButton perfilBtn = new JButton("");
 		perfilBtn.setBounds(244, 545, 50, 50);
 		perfilBtn.setBorderPainted(false);
 		perfilBtn.setContentAreaFilled(false);
-		perfilBtn.setIcon(new ImageIcon(img));
-        perfilBtn.setRolloverIcon(new ImageIcon(img_));
+		perfilBtn.setIcon(new ImageIcon(profileImg));
+        perfilBtn.setRolloverIcon(new ImageIcon(profileImgHover));
 		frame.getContentPane().add(perfilBtn);
 		
-		Image img0 = new ImageIcon(this.getClass().getResource("/img/menuIcon.png")).getImage();
-        Image img01 = new ImageIcon(this.getClass().getResource("/img/menuIconHover.png")).getImage();
+		Image verReservasImg = new ImageIcon(this.getClass().getResource("/img/menuIcon.png")).getImage();
+        Image verReservasImgHover = new ImageIcon(this.getClass().getResource("/img/menuIconHover.png")).getImage();
 		JButton verReservasBtn = new JButton("");
 		verReservasBtn.setBounds(41, 545, 50, 50);
 		verReservasBtn.setBorderPainted(false);
 		verReservasBtn.setContentAreaFilled(false);
-		verReservasBtn.setIcon(new ImageIcon(img0));
-		verReservasBtn.setRolloverIcon(new ImageIcon(img01));
+		verReservasBtn.setIcon(new ImageIcon(verReservasImg));
+		verReservasBtn.setRolloverIcon(new ImageIcon(verReservasImgHover));
 		frame.getContentPane().add(verReservasBtn);
 		
-		Image img1 = new ImageIcon(this.getClass().getResource("/img/homeIcon.png")).getImage();
-        Image img11 = new ImageIcon(this.getClass().getResource("/img/homeIconHover.png")).getImage();
+		Image homeImg = new ImageIcon(this.getClass().getResource("/img/homeIcon.png")).getImage();
+        Image homeImgHover = new ImageIcon(this.getClass().getResource("/img/homeIconHover.png")).getImage();
 		JButton homeBtn = new JButton();
 		homeBtn.setBounds(141, 545, 50, 50);
 		homeBtn.setBorderPainted(false);
 		homeBtn.setContentAreaFilled(false);
-		homeBtn.setIcon(new ImageIcon(img1));
-		homeBtn.setRolloverIcon(new ImageIcon(img11));
+		homeBtn.setIcon(new ImageIcon(homeImg));
+		homeBtn.setRolloverIcon(new ImageIcon(homeImgHover));
 		frame.getContentPane().add(homeBtn);
 
         frame.getContentPane().setComponentZOrder(franjaLbl, frame.getContentPane().getComponentCount() - 1);

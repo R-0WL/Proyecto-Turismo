@@ -1,8 +1,8 @@
 public class controladorPago {
-    private modeloPago pago;
+    private Pago pago;
     private vistaPago vistaPago;
 
-    public controladorPago(modeloPago pago, vistaPago vistaPago){
+    public controladorPago(Pago pago, vistaPago vistaPago){
         this.pago = pago;
         this.vistaPago = vistaPago;
     }
@@ -12,12 +12,12 @@ public class controladorPago {
             vistaPago.mostrarError("El ID de la reserva y el metodo de pago son obligatorios.");
             return;
         }
-        modeloReserva reserva = pago.obtenerReservaporId(reservaId);
+        Reserva reserva = pago.obtenerReservaporId(reservaId);
         if(reserva == null){
             vistaPago.mostrarError("No se encontró la reserva con ID" +  reservaId);
             return;
         }
-        modeloPago nuevoPago = new modeloPago(reservaId, reserva, reservaId, null, metodoPago);
+        Pago nuevoPago = new Pago(reservaId, reserva, reservaId, null, metodoPago);
         pago.guardarPago(nuevoPago);
         vistaPago.mostrarMensajeExito("Pago procesado exitosamente para la reserva ID: " + reservaId);
     }

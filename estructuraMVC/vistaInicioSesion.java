@@ -114,7 +114,7 @@ public class vistaInicioSesion {
                     return;
                 }else{
                     // USUARIO DE PRUEBA: (FALTA HACER LA LOGIN CON LA BASE DE DATOS Y VALIDAR)
-                    modeloUsuario usuarioActual = new modeloUsuario(2986496670101, "Santiago Cordero Quirós", "cor24472@uvg.edu.gt", "pepe123", "Turismo");
+                    modeloUsuario usuarioActual = new modeloUsuario(999999999999l, "Santiago Cordero Quirós", "cor24472@uvg.edu.gt", "pepe123", "Turismo");
                     redireccionarDashboard(frame, usuarioActual);
                 }
             }
@@ -151,7 +151,7 @@ public class vistaInicioSesion {
         JButton backBtn = new JButton("Regresar");
 		backBtn.setBackground(Color.WHITE);
 		backBtn.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 15));
-		backBtn.setBounds(125, 535, 100, 51);
+		backBtn.setBounds(257, 550, 87, 51);
         backBtn.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
@@ -219,49 +219,68 @@ public class vistaInicioSesion {
 		
 		JLabel motivoLbl1 = new JLabel("¿Cuál es su motivo para");
 		motivoLbl1.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
-		motivoLbl1.setBounds(10, 312, 172, 29);
+		motivoLbl1.setBounds(10, 366, 172, 29);
 		frame.getContentPane().add(motivoLbl1);
 		
 		JLabel motivoLbl2 = new JLabel("utilizar nuestra app?");
 		motivoLbl2.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
-		motivoLbl2.setBounds(10, 333, 172, 29);
+		motivoLbl2.setBounds(10, 387, 172, 29);
 		frame.getContentPane().add(motivoLbl2);
+
+        JLabel dpiLabel = new JLabel("No. de DPI");
+		dpiLabel.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
+		dpiLabel.setBounds(10, 310, 94, 29);
+		frame.getContentPane().add(dpiLabel);
+		
+		JTextField dpiEntry = new JTextField();
+		dpiEntry.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
+		dpiEntry.setBounds(98, 318, 236, 26);
+		frame.getContentPane().add(dpiEntry);
+		
+		JLabel lblsinGuiones = new JLabel("(sin guiones)");
+		lblsinGuiones.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
+		lblsinGuiones.setBounds(10, 326, 94, 29);
+		frame.getContentPane().add(lblsinGuiones);
 
         JLabel razonExtraLbl = new JLabel("Especifique:");
 		razonExtraLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 15));
 		razonExtraLbl.setVisible(false);
-		razonExtraLbl.setBounds(24, 372, 80, 20);
+		razonExtraLbl.setBounds(24, 426, 80, 20);
 		frame.getContentPane().add(razonExtraLbl);
 		
 		JTextField razonExtra = new JTextField();
 		razonExtra.setVisible(false);
-		razonExtra.setBounds(105, 371, 217, 29);
+		razonExtra.setBounds(105, 425, 217, 29);
 		frame.getContentPane().add(razonExtra);
-		
-		@SuppressWarnings("rawtypes")
+
+        JButton crearCuentaBtn = new JButton("Crear Cuenta");
+
+        @SuppressWarnings("rawtypes")
         JComboBox tipoUsuarioDropDown = new JComboBox();
 		tipoUsuarioDropDown.setToolTipText("Escoja una de las opciones siguientes");
 		tipoUsuarioDropDown.setModel(new DefaultComboBoxModel(new String[] {"Turismo (cualquier índole)", "Trabajo", "Estudios", "Visitas a Familiares", "Residencia Temporal", "Otro (Especifique)"}));
 		tipoUsuarioDropDown.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
         tipoUsuarioDropDown.setBackground(Color.WHITE);
-		tipoUsuarioDropDown.setBounds(162, 321, 170, 29);
+		tipoUsuarioDropDown.setBounds(162, 376, 170, 29);
         tipoUsuarioDropDown.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 if(tipoUsuarioDropDown.getSelectedItem().toString() == "Otro (Especifique)"){
                     razonExtra.setVisible(true);
                     razonExtraLbl.setVisible(true);
+                    crearCuentaBtn.setLocation(91, 470);
+                    
                 }else{
                     razonExtra.setVisible(false);
                     razonExtraLbl.setVisible(false);
+                    crearCuentaBtn.setLocation(91, 435);
                 }
             }
         });
 		frame.getContentPane().add(tipoUsuarioDropDown);
 
-        JButton crearCuentaBtn = new JButton("Crear Cuenta");
 		crearCuentaBtn.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 22));
         crearCuentaBtn.setBackground(Color.WHITE);
-		crearCuentaBtn.setBounds(91, 421, 165, 54);
+		crearCuentaBtn.setBounds(91, 435, 165, 52);
         crearCuentaBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 ArrayList<String> values = new ArrayList<>();
@@ -270,6 +289,7 @@ public class vistaInicioSesion {
                 values.add(new String(passwordField.getPassword()));
                 values.add(new String(passwordFieldConfirmar.getPassword()));
                 values.add(tipoUsuarioDropDown.getSelectedItem().toString());
+                values.add(String.valueOf(Long.parseLong(dpiEntry.getText())));
 
                 for(String s : values){
                     if (s.replaceAll("\\s+","").equals("")){
@@ -307,8 +327,7 @@ public class vistaInicioSesion {
                 }
             }
         });
-		frame.getContentPane().add(crearCuentaBtn);
-		
+		frame.getContentPane().add(crearCuentaBtn);		
     }
 
     public void redireccionarDashboard(JFrame frame, modeloUsuario currentUsuario) {

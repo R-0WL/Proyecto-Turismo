@@ -503,7 +503,34 @@ public class vistaInicioSesion {
 		homeBtn.setContentAreaFilled(false);
 		homeBtn.setIcon(new ImageIcon(homeImg));
 		homeBtn.setRolloverIcon(new ImageIcon(homeImgHover));
+        homeBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent a){
+                redireccionarDashboard(frame, currentUsuario);
+            }
+        });
 		frame.getContentPane().add(homeBtn);
+
+        String[] userInfo = currentUsuario.getNombre().split(" ");
+        String userNameLblString = "<html> ";
+        int userNameLblHeight = 0;
+        int i = 1;
+        for(String s : userInfo){
+            userNameLblString += (s + "<br/>");
+            userNameLblHeight += 18 * i;
+            i++;
+        }
+        userNameLblString += "</html>";
+		JLabel userNameLbl = new JLabel(userNameLblString);
+		userNameLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 20));
+		userNameLbl.setBounds(200, 37, 166, userNameLblHeight);
+		frame.getContentPane().add(userNameLbl);
+
+        JLabel largeProfileLbl = new JLabel();
+        Image largeProfile = new ImageIcon(this.getClass().getResource("/img/profileIcon.png")).getImage();
+        largeProfileLbl.setIcon(new ImageIcon(largeProfile));
+		largeProfileLbl.setBounds(30,30,300,300);
+        frame.getContentPane().add(largeProfileLbl);
 
         frame.getContentPane().setComponentZOrder(franjaLbl, frame.getContentPane().getComponentCount() - 1);
     }

@@ -1,5 +1,5 @@
 public class modeloUsuario {
-    private int id;
+    private long id;
     private String nombre;
     private String correo;
     private String contraseña;
@@ -8,7 +8,15 @@ public class modeloUsuario {
     // Métodos: Getters, Setters, registrar, iniciarSesion, actualizarPerfil, cambiarContraseña
     
     //METODO CONSTRUCTOR
-    public modeloUsuario ( int id, String nombre, String correo, String contraseña, String tipoUsuario){
+    /**
+     * 
+     * @param id DPI del usuario
+     * @param nombre Nombre completo del usuario
+     * @param correo Correo electrónico del usuario
+     * @param contraseña Contraseña del usuario
+     * @param tipoUsuario Razón por la cual viaja el usuario.
+     */
+    public modeloUsuario (long id, String nombre, String correo, String contraseña, String tipoUsuario){
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;
@@ -17,14 +25,14 @@ public class modeloUsuario {
     }
 
     //GETTERS
-    public int getID(){return id;}
-    public String getNombre(){return nombre;}
-    public String getCorreo(){return correo;}
-    public String getContraseña(){return contraseña;}
-    public String getTipoUsuario(){return tipoUsuario;}
+    public long getID(){return this.id;}
+    public String getNombre(){return this.nombre;}
+    public String getCorreo(){return this.correo;}
+    public String getContraseña(){return this.contraseña;}
+    public String getTipoUsuario(){return this.tipoUsuario;}
 
     //SETTERS
-    public void setID(int id){this.id = id;}
+    public void setID(long id){this.id = id;}
     public void setNombre(String nombre){this.nombre = nombre;}
     public void setCorreo(String correo){this.correo = correo;}
     public void setContraseña(String contraseña){this.contraseña = contraseña;}

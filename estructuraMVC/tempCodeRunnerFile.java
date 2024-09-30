@@ -1,0 +1,2 @@
+
+		frmEasyrents.setVisible(true);

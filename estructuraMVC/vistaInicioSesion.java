@@ -111,10 +111,10 @@ public class vistaInicioSesion {
                     return;
                 }else if(!txtCorreoElectrnico.getText().contains("@")){
                     mostrarError("Debe de ingresar una dirección de correo válida");
-                    return;                    
+                    return;
                 }else{
                     // USUARIO DE PRUEBA: (FALTA HACER LA LOGIN CON LA BASE DE DATOS Y VALIDAR)
-                    modeloUsuario usuarioActual = new modeloUsuario(0000, "Santiago Cordero Quirós", "cor24472@uvg.edu.gt", "pepe123", "Turismo");
+                    modeloUsuario usuarioActual = new modeloUsuario(2986496670101, "Santiago Cordero Quirós", "cor24472@uvg.edu.gt", "pepe123", "Turismo");
                     redireccionarDashboard(frame, usuarioActual);
                 }
             }
@@ -511,26 +511,84 @@ public class vistaInicioSesion {
         });
 		frame.getContentPane().add(homeBtn);
 
+        JLabel profileTitleLbl = new JLabel("Perfil de Usuario");
+		profileTitleLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 23));
+		profileTitleLbl.setBounds(95, 25, 166, 38);
+		frame.getContentPane().add(profileTitleLbl);
+
         String[] userInfo = currentUsuario.getNombre().split(" ");
         String userNameLblString = "<html> ";
         int userNameLblHeight = 0;
         int i = 1;
         for(String s : userInfo){
             userNameLblString += (s + "<br/>");
-            userNameLblHeight += 18 * i;
+            userNameLblHeight += 25 * i;
             i++;
         }
         userNameLblString += "</html>";
 		JLabel userNameLbl = new JLabel(userNameLblString);
-		userNameLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 20));
-		userNameLbl.setBounds(200, 37, 166, userNameLblHeight);
+		userNameLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 30));
+		userNameLbl.setBounds(180, 65, 166, userNameLblHeight);
 		frame.getContentPane().add(userNameLbl);
 
         JLabel largeProfileLbl = new JLabel();
         Image largeProfile = new ImageIcon(this.getClass().getResource("/img/profileIcon.png")).getImage();
         largeProfileLbl.setIcon(new ImageIcon(largeProfile));
-		largeProfileLbl.setBounds(30,30,300,300);
+		largeProfileLbl.setBounds(15,0,300,300);
         frame.getContentPane().add(largeProfileLbl);
+
+        // FALTA CREAR LA ITERACIÓN DE LAS LISTAS DEL USUARIO Y MOSTRARLAS COMO LISTA.
+        /*
+        String[] licencias = currentUsuario.getLicencias();
+        String licenciasLblString = "<html> ";
+        int licenciasLblHeight = 0;
+        int j = 0;
+        for(String l : licencias){
+            licenciasLblString += (l + "<br/>");
+            licenciasLblHeight += 18 * j;
+            j++;
+        }
+        */
+        JLabel licenciasListLabel = new JLabel("- ");
+		licenciasListLabel.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
+		licenciasListLabel.setBounds(46, 401, 139, 21);
+		frame.getContentPane().add(licenciasListLabel);
+		
+		JLabel licenciaLbl = new JLabel("Licencias Asociadas:");
+		licenciaLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 17));
+		licenciaLbl.setBounds(10, 366, 150, 31);
+		frame.getContentPane().add(licenciaLbl);
+		
+		JLabel telefonoTxtLabel = new JLabel("Teléfono:");
+		telefonoTxtLabel.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 17));
+		telefonoTxtLabel.setBounds(10, 240, 71, 31);
+		frame.getContentPane().add(telefonoTxtLabel);
+
+        JLabel telefonoValueLbl = new JLabel("128951928"); // currentusuario.getTelefono() falta
+		telefonoValueLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 17));
+		telefonoValueLbl.setBounds(91, 240, 150, 31);
+		frame.getContentPane().add(telefonoValueLbl);
+		frame.setLocationRelativeTo(null);
+		
+		JLabel dpiTextLbl = new JLabel("No. de DPI asociado:");
+		dpiTextLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 17));
+		dpiTextLbl.setBounds(10, 282, 159, 31);
+		frame.getContentPane().add(dpiTextLbl);
+		
+		JLabel dpiValueLbl = new JLabel(String.valueOf(currentUsuario.getID()));
+		dpiValueLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 17));
+		dpiValueLbl.setBounds(171, 282, 150, 31);
+		frame.getContentPane().add(dpiValueLbl);
+
+        JLabel correoLbl = new JLabel("Correo electrónico:");
+		correoLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 17));
+		correoLbl.setBounds(10, 324, 150, 31);
+		frame.getContentPane().add(correoLbl);
+		
+		JLabel correoValueLbl = new JLabel(currentUsuario.getCorreo());
+		correoValueLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 17));
+		correoValueLbl.setBounds(159, 324, 175, 31);
+		frame.getContentPane().add(correoValueLbl);
 
         frame.getContentPane().setComponentZOrder(franjaLbl, frame.getContentPane().getComponentCount() - 1);
     }

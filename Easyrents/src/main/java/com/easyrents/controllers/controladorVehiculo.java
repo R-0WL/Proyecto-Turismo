@@ -1,12 +1,12 @@
 import java.util.List;
 
 public class controladorVehiculo {
-    private Vehiculo vehiculo;
     private vistaBusquedaVehiculos vistaBusquedaVehiculos;
+    private List<Vehiculo> listaVehiculos;
 
-    public controladorVehiculo(Vehiculo vehiculo, vistaBusquedaVehiculos vistaBusquedaVehiculos){
-        this.vehiculo = vehiculo;
+    public controladorVehiculo(vistaBusquedaVehiculos vistaBusquedaVehiculos, List<Vehiculo> listaVehiculos){
         this.vistaBusquedaVehiculos = vistaBusquedaVehiculos;
+        this.listaVehiculos = listaVehiculos;
     }
 
     public void buscarVehiculos(String criteriosBusqueda) {
@@ -14,7 +14,7 @@ public class controladorVehiculo {
             vistaBusquedaVehiculos.mostrarError("Por favor, ingrese todos los criterios de búsqueda.");
             return;
         }
-        List<Vehiculo> resultados = vehiculo.buscarVehiculos(criteriosBusqueda);
+        List<Vehiculo> resultados = Vehiculo.buscarVehiculos(criteriosBusqueda, listaVehiculos);
         if(resultados.isEmpty()){
             vistaBusquedaVehiculos.mostrarError("No se encontraron vehiculos disponibles.");
         }
@@ -28,7 +28,7 @@ public class controladorVehiculo {
             vistaBusquedaVehiculos.mostrarError("El ID del vehículo no es válido.");
             return;
         }
-        Vehiculo vehiculoEncontrado = vehiculo.obtenerVehiculoPorID(vehiculoId);
+        Vehiculo vehiculoEncontrado = Vehiculo.obtenerVehiculoPorID(vehiculoId, listaVehiculos);
         if(vehiculoEncontrado != null){
             vistaBusquedaVehiculos.mostrarDetallesVehiculo(vehiculoEncontrado);
         }

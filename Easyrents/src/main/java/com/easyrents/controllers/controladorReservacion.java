@@ -18,4 +18,20 @@ public class controladorReservacion {
         reserva.guardarReserva(nuevaReserva);
         vistaReservacion.mostrarMensajeExito("Reservación creada exitosamente.");
     }
+
+
+    public void modificarReserva(Date nuevaFechaInicio, Date nuevaFechaFin, double nuevoTotal) {
+        this.fechaInicio = nuevaFechaInicio;
+        this.fechaFin = nuevaFechaFin;
+        this.total = nuevoTotal;
+        System.out.println("La reserva con ID " + this.id + " ha sido modificada.");
+    }
+
+    public void cancelarReserva() {
+        // Implementación para cancelar la reserva, podría implicar la anulación del objeto o cambios en su estado
+        System.out.println("La reserva con ID " + this.id + " ha sido cancelada.");
+        this.fechaInicio = null;
+        this.fechaFin = null;
+        this.total = 0.0;
+    }
 }

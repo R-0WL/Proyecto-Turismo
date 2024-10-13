@@ -36,5 +36,4 @@ public class Pago {
                 + ", metodoPago=" + metodoPago + "]";
     }
 
-    
 }

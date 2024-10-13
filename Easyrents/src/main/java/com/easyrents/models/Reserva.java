@@ -51,22 +51,6 @@ public class Reserva {
     //METODO PARA CANCELAR UNA RESERVA
     //acorde a la estructura MVC, esto es logica y no deberia estar en un modelo?
     //mover a un controlador o borrar?
-    public void cancelarReserva() {
-        // Implementación para cancelar la reserva, podría implicar la anulación del objeto o cambios en su estado
-        System.out.println("La reserva con ID " + this.id + " ha sido cancelada.");
-        this.fechaInicio = null;
-        this.fechaFin = null;
-        this.total = 0.0;
-    }
-    
-    //METODO PARA MODIFICAR UNA RESERVA
-    //acorde a la estructura MVC, esto es logica y no deberia estar en un modelo?
-    //mover a un controlador o borrar?
-    public void modificarReserva(Date nuevaFechaInicio, Date nuevaFechaFin, double nuevoTotal) {
-        this.fechaInicio = nuevaFechaInicio;
-        this.fechaFin = nuevaFechaFin;
-        this.total = nuevoTotal;
-        System.out.println("La reserva con ID " + this.id + " ha sido modificada.");
-    }
+
 }
 

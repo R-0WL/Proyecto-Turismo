@@ -41,8 +41,4 @@ public class vistaBusquedaVehiculos {
     public void mostrar() {
         frame.setVisible(true);
     }
-    }
-    public void mostrarError(String string) {
-        JOptionPane.showMessageDialog(frame, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
-    }
 }

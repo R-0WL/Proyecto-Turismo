@@ -1,3 +1,4 @@
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,19 +47,29 @@ public class Vehiculo {
                 + ", precio=" + precio + ", disponible=" + disponible + "]";
     }
 
-    public static List<Vehiculo> buscarVehiculos(String criteriosBusqueda, List<Vehiculo> listaVehiculos) {
-        List<Vehiculo> resultados = new ArrayList<>();
-        for(Vehiculo vehiculo : listaVehiculos){
-            if(vehiculo.getMarca().equalsIgnoreCase(criteriosBusqueda) ||
-            vehiculo.getModelo().equalsIgnoreCase(criteriosBusqueda) || 
-            vehiculo.getTipo().equalsIgnoreCase(criteriosBusqueda)){
+    //compara los datos ingresados con los datos de los carros en el sistema y devuelve una lista con todos los carros que compartan datos
+    //static hace que se pueda usar sin crear un nuevo objeto Vehiculo, los 2 metodos siguientes
+    public static AbstractList<Vehiculo> buscarVehiculos(String marca, String modelo, String tipo, AbstractList<Vehiculo> listaVehiculos) {
+        //metodo devuelve una lista de vehiculos
+        AbstractList<Vehiculo> resultados = new ArrayList<Vehiculo>();
+        //ArrayList implements AbstractList (implements List)
+        //List<> te permite cambiar fácilmente entre diferentes implementaciones de la interfaz AbstractList sin afectar 
+        //el código que usa la lista. Por ejemplo, puedes cambiar de ArrayList<> a LinkedList<> sin modificar demasiado el código
+        for (Vehiculo vehiculo : listaVehiculos) {
+            //Comprueba si el vehículo coincide con los criterios de búsqueda (marca, modelo, tipo)
+            boolean coincideMarca = (marca == null || vehiculo.getMarca().equalsIgnoreCase(marca));
+            boolean coincideModelo = (modelo == null || vehiculo.getModelo().equalsIgnoreCase(modelo));
+            boolean coincideTipo = (tipo == null || vehiculo.getTipo().equalsIgnoreCase(tipo));
+
+            //Si coincide con al menos un criterio, añadir a la lista de resultados
+            if (coincideMarca && coincideModelo && coincideTipo) {
                 resultados.add(vehiculo);
             }
         }
-        return resultados;
+    return resultados;
     }
 
-    public static Vehiculo obtenerVehiculoPorID(int vehiculoId, List<Vehiculo> listaVehiculos) {
+    public static Vehiculo obtenerVehiculoPorID(int vehiculoId, AbstractList<Vehiculo> listaVehiculos) {
         for(Vehiculo vehiculo : listaVehiculos){
             if(vehiculo.getID() == vehiculoId){
                 return vehiculo;

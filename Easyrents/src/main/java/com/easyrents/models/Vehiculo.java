@@ -1,6 +1,7 @@
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Vehiculo {
     private int id;
@@ -49,7 +50,7 @@ public class Vehiculo {
 
     //compara los datos ingresados con los datos de los carros en el sistema y devuelve una lista con todos los carros que compartan datos
     //static hace que se pueda usar sin crear un nuevo objeto Vehiculo, los 2 metodos siguientes
-    public static AbstractList<Vehiculo> buscarVehiculos(String marca, String modelo, String tipo, AbstractList<Vehiculo> listaVehiculos) {
+    public static AbstractList<Vehiculo> buscarVehiculosStr(String marca, String modelo, String tipo, AbstractList<Vehiculo> listaVehiculos) {
         //metodo devuelve una lista de vehiculos
         AbstractList<Vehiculo> resultados = new ArrayList<Vehiculo>();
         //ArrayList implements AbstractList (implements List)
@@ -69,12 +70,14 @@ public class Vehiculo {
     return resultados;
     }
 
-    public static Vehiculo obtenerVehiculoPorID(int vehiculoId, AbstractList<Vehiculo> listaVehiculos) {
+    //
+    public static Optional<Vehiculo> buscarVehiculosID(int vehiculoId, AbstractList<Vehiculo> listaVehiculos) {
         for(Vehiculo vehiculo : listaVehiculos){
             if(vehiculo.getID() == vehiculoId){
-                return vehiculo;
+                return Optional.of(vehiculo);
             }
         }
-        return null;         
+        return Optional.empty();
+        //return null; => se cambio por el uso de la clase Optional para evitar un mal manejo y la NullPointerException    
     }
 }

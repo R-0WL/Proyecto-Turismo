@@ -23,6 +23,14 @@ public class controladorPago {
     }
     
     public void generarFactura(int pagoId) {
-        
+        Pago pago = pago.obtenerPagoPorID(pagoId);
+        if (pago == null){
+            //MOSTRAR MENSAJE DE ERROR (NO SE ENCONTRO EL PAGO CON ID: -----)
+            return;
+        }
+
+        //GENERAR FACTURA AQUÍ COMO UN TXT O ALGO
+
+        //MENSAJE DE EXITO DE LA GENERACION DE LA FACTURA E IMPRESION DE LA MISMA   
     }
 }

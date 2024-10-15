@@ -3,6 +3,8 @@ public class controladorReservacion {
     private Reserva reserva;
     private vistaReservacion vistaReservacion;
 
+    //CORREGIR TODOS LOS ERRRORES QUE HAYA
+
     public controladorReservacion(Reserva reserva, vistaReservacion vistaReservacion){
         this.reserva = reserva;
         this.vistaReservacion = vistaReservacion;

@@ -34,23 +34,11 @@ public class Reserva {
     public void setFechaFin(Date fechaFin) {this.fechaFin = fechaFin;}
     public void setTotal(double total) {this.total = total;}
     
-    
-    //METODO PARA CREAR UNA NUEVA RESERVA
-    //metodo totalmente redundante!!!! procedo a comentarlo por el momento
-    // public static Reserva crearReserva(int id, Usuario usuario, Vehiculo vehiculo, Date fechaInicio, Date fechaFin, double total) {
-    //     return new Reserva(id, usuario, vehiculo, fechaInicio, fechaFin, total);
-    // }
-    
     //TOSTRING
     @Override
     public String toString() {
         return "Reserva [id=" + id + ", usuario=" + usuario + ", vehiculo=" + vehiculo + ", fechaInicio=" + fechaInicio
                 + ", fechaFin=" + fechaFin + ", total=" + total + "]";
     }
-
-    //METODO PARA CANCELAR UNA RESERVA
-    //acorde a la estructura MVC, esto es logica y no deberia estar en un modelo?
-    //mover a un controlador o borrar?
-
 }
 

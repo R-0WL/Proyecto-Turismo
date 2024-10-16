@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class vistaReservacion {
-    public void mostrarFormularioReservacion(modeloVehiculo vehiculo, JFrame frame, modeloUsuario currentUsuario) {
+    public void mostrarFormularioReservacion(Vehiculo vehiculo, JFrame frame, Usuario currentUsuario) {
 
         vistaInicioSesion vistaInicioSesion = new vistaInicioSesion();
         frame.getContentPane().removeAll();
@@ -27,13 +27,13 @@ public class vistaReservacion {
 		vehiculoImageLbl.setBounds(10, 10, 154, 154);
         switch(vehiculo.getTipo()){
             case "Motocicleta":
-                vehiculoImageLbl.setIcon(new javax.swing.ImageIcon(this.getClass().getResource("/img/motoIcon.png")));
+                vehiculoImageLbl.setIcon(new javax.swing.ImageIcon(this.getClass().getResource("/resources/img/motoIcon.png")));
                 break;
             case "Automóvil particular":
-                vehiculoImageLbl.setIcon(new javax.swing.ImageIcon(this.getClass().getResource("/img/sedanIcon.png")));
+                vehiculoImageLbl.setIcon(new javax.swing.ImageIcon(this.getClass().getResource("/resources/img/sedanIcon.png")));
                 break;
             case "Bus particular":
-                vehiculoImageLbl.setIcon(new javax.swing.ImageIcon(this.getClass().getResource("/img/busIcon.png")));
+                vehiculoImageLbl.setIcon(new javax.swing.ImageIcon(this.getClass().getResource("/resources/img/busIcon.png")));
                 break;
         }
         frame.getContentPane().add(vehiculoImageLbl);
@@ -98,13 +98,65 @@ public class vistaReservacion {
 		yearFinalBox.setModel(new DefaultComboBoxModel(years));
 		frame.getContentPane().add(yearFinalBox);
 
-		mesInicioBox.addActionListener(e -> {
-            actualizarDiasComboBox(mesInicioBox, yearInicioBox, diaInicioBox);
-        });
+		JLabel totalPagarLbl =  new JLabel("Total a pagar: Q. 0.00");
+		totalPagarLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 19));
+		totalPagarLbl.setBounds(10, 423, 324, 34);
+		frame.getContentPane().add(totalPagarLbl);
 
-        mesFinalBox.addActionListener(e -> {
-            actualizarDiasComboBox(mesFinalBox, yearFinalBox, diaFinalBox);
-        });
+		ActionListener cambioStringPrecioIniciales = new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				actualizarDiasComboBox(mesInicioBox, yearInicioBox, diaInicioBox);
+				if(diaInicioBox.isEnabled() && diaFinalBox.isEnabled()){
+					LocalDate fechaInicio = LocalDate.of(Integer.parseInt((String) yearInicioBox.getSelectedItem()), Integer.parseInt((String) mesInicioBox.getSelectedItem()), Integer.parseInt((String) diaInicioBox.getSelectedItem()));
+					LocalDate fechaFinal = LocalDate.of(Integer.parseInt((String) yearFinalBox.getSelectedItem()), Integer.parseInt((String) mesFinalBox.getSelectedItem()), Integer.parseInt((String) diaFinalBox.getSelectedItem()));
+					long numDias = Math.abs(calcDiasInBetween(fechaInicio, fechaFinal));
+					totalPagarLbl.setText("Total a pagar: Q." + vehiculo.getPrecio() * numDias);
+					totalPagarLbl.revalidate();
+					totalPagarLbl.repaint();
+					frame.getContentPane().revalidate();
+					frame.repaint();
+				}
+			}
+		};
+
+		ActionListener cambioStringPrecioFinales = new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				actualizarDiasComboBox(mesFinalBox, yearFinalBox, diaFinalBox);
+				if(diaInicioBox.isEnabled() && diaFinalBox.isEnabled()){
+					LocalDate fechaInicio = LocalDate.of(Integer.parseInt((String) yearInicioBox.getSelectedItem()), Integer.parseInt((String) mesInicioBox.getSelectedItem()), Integer.parseInt((String) diaInicioBox.getSelectedItem()));
+					LocalDate fechaFinal = LocalDate.of(Integer.parseInt((String) yearFinalBox.getSelectedItem()), Integer.parseInt((String) mesFinalBox.getSelectedItem()), Integer.parseInt((String) diaFinalBox.getSelectedItem()));
+					long numDias = Math.abs(calcDiasInBetween(fechaInicio, fechaFinal));
+					totalPagarLbl.setText("Total a pagar: Q." + vehiculo.getPrecio() * numDias);
+					totalPagarLbl.revalidate();
+					totalPagarLbl.repaint();
+					frame.getContentPane().revalidate();
+					frame.repaint();
+				}
+			}
+		};
+
+		ActionListener cambioStringPrecioNormal = new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				if(diaInicioBox.isEnabled() && diaFinalBox.isEnabled()){
+					LocalDate fechaInicio = LocalDate.of(Integer.parseInt((String) yearInicioBox.getSelectedItem()), Integer.parseInt((String) mesInicioBox.getSelectedItem()), Integer.parseInt((String) diaInicioBox.getSelectedItem()));
+					LocalDate fechaFinal = LocalDate.of(Integer.parseInt((String) yearFinalBox.getSelectedItem()), Integer.parseInt((String) mesFinalBox.getSelectedItem()), Integer.parseInt((String) diaFinalBox.getSelectedItem()));
+					long numDias = Math.abs(calcDiasInBetween(fechaInicio, fechaFinal));
+					totalPagarLbl.setText("Total a pagar: Q." + vehiculo.getPrecio() * numDias);
+					totalPagarLbl.revalidate();
+					totalPagarLbl.repaint();
+					frame.getContentPane().revalidate();
+					frame.repaint();
+				}
+			}
+		};
+
+		mesInicioBox.addActionListener(cambioStringPrecioIniciales);
+		yearInicioBox.addActionListener(cambioStringPrecioNormal);
+		diaInicioBox.addActionListener(cambioStringPrecioNormal);
+
+		mesFinalBox.addActionListener(cambioStringPrecioFinales);
+		yearFinalBox.addActionListener(cambioStringPrecioNormal);
+		diaFinalBox.addActionListener(cambioStringPrecioNormal);
 
 		JButton btnReservar = new JButton("¡Reservar!");
 		btnReservar.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 18));
@@ -120,13 +172,9 @@ public class vistaReservacion {
 					Date fechaFinalDate = Date.from(fechaFinal.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
 					double precioPagar = vehiculo.getPrecio() * numDias;
-					JLabel totalPagarLbl = new JLabel("Total a pagar: Q. " + precioPagar);
-					totalPagarLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 19));
-					totalPagarLbl.setBounds(10, 423, 324, 34);
-					frame.getContentPane().add(totalPagarLbl);
 					mostrarConfirmacion("¡Se ha creado la reserva exitosamente!");
 					// Reserva de prueba
-					modeloReserva reservaNueva = new modeloReserva(00, currentUsuario, vehiculo, fechaInicioDate, fechaFinalDate, precioPagar);
+					Reserva reservaNueva = new Reserva(0, currentUsuario, vehiculo, fechaInicioDate, fechaFinalDate, precioPagar);
 					// currentUsuario.getReservas().add(reservaNueva);
 					// listaReservas.add(reservaNueva);
 				}catch(NumberFormatException nF){
@@ -189,6 +237,10 @@ public class vistaReservacion {
         }
         diaBox.setEnabled(true);
     }
+
+	public long calcDiasInBetween(LocalDate fechaInicio, LocalDate fechaFinal) {
+		return ChronoUnit.DAYS.between(fechaInicio, fechaFinal);
+	}
 
     public void mostrarConfirmacion(String message) {
         JOptionPane.showMessageDialog(null, message, "Creación exitosa", JOptionPane.INFORMATION_MESSAGE);

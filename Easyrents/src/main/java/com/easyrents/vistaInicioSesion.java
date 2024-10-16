@@ -24,7 +24,7 @@ public class vistaInicioSesion {
         frame.getContentPane().removeAll();
         frame.repaint();
         
-        Image iconImage = new ImageIcon(this.getClass().getResource("/img/easyLogo.png")).getImage();
+        Image iconImage = new ImageIcon(this.getClass().getResource("/resources/img/easyLogo.png")).getImage();
         frame.setIconImage(iconImage);
 
         JPasswordField passwordField = new JPasswordField();
@@ -46,13 +46,13 @@ public class vistaInicioSesion {
 		frame.getContentPane().add(visitanosLbl);
 		
 		JLabel imgTwitter = new JLabel("");
-		Image imgTwit = new ImageIcon(this.getClass().getResource("/img/twitter-icon.png")).getImage();
+		Image imgTwit = new ImageIcon(this.getClass().getResource("resources/img/twitter-icon.png")).getImage();
 		imgTwitter.setIcon(new ImageIcon(imgTwit));
 		imgTwitter.setBounds(180, 518, 50, 50);
 		frame.getContentPane().add(imgTwitter);
 		
 		JLabel imgInsta = new JLabel("");
-		Image imgIg = new ImageIcon(this.getClass().getResource("/img/insta-icon.png")).getImage();
+		Image imgIg = new ImageIcon(this.getClass().getResource("/resources/img/insta-icon.png")).getImage();
 		imgInsta.setIcon(new ImageIcon(imgIg));
 		imgInsta.setBounds(110, 518, 50, 50);
 		frame.getContentPane().add(imgInsta);
@@ -115,7 +115,7 @@ public class vistaInicioSesion {
                     return;
                 }else{
                     // USUARIO DE PRUEBA: (FALTA HACER LA LOGIN CON LA BASE DE DATOS Y VALIDAR)
-                    Usuario usuarioActual = new Usuario(999999999999l, "Santiago Cordero Quirós", "cor24472@uvg.edu.gt", "pepe123", "Turismo");
+                    Usuario usuarioActual = new Usuario(9999999, "Santiago Cordero Quirós", "cor24472@uvg.edu.gt", "pepe123", "Turismo");
                     redireccionarDashboard(frame, usuarioActual);
                 }
             }
@@ -123,13 +123,13 @@ public class vistaInicioSesion {
 		frame.getContentPane().add(loginBtn_1);
 
         JLabel logoImageLabel = new JLabel();
-		Image logoImage = new ImageIcon(this.getClass().getResource("/img/easyLogo95x95.png")).getImage();
+		Image logoImage = new ImageIcon(this.getClass().getResource("/resources/img/easyLogo95x95.png")).getImage();
 		logoImageLabel.setIcon(new ImageIcon(logoImage));
 		logoImageLabel.setBounds(116, 7, 115, 95);
 		frame.getContentPane().add(logoImageLabel);
 		
 		JLabel logoNameImgLbl = new JLabel("");
-		Image logoNameImg = new ImageIcon(this.getClass().getResource("/img/easyRents177x50.png")).getImage();
+		Image logoNameImg = new ImageIcon(this.getClass().getResource("/resources/img/easyRents177x50.png")).getImage();
 		logoNameImgLbl.setIcon(new ImageIcon(logoNameImg));
 		logoNameImgLbl.setBounds(84, 106, 177, 50);
 		frame.getContentPane().add(logoNameImgLbl);
@@ -178,8 +178,8 @@ public class vistaInicioSesion {
 		
 		frame.getContentPane().add(franjaLbl);
 
-		Image profileImg = new ImageIcon(this.getClass().getResource("/img/profileIconSmall.png")).getImage();
-		Image profileImgHover = new ImageIcon(this.getClass().getResource("/img/profileIconSmallHover.png")).getImage();
+		Image profileImg = new ImageIcon(this.getClass().getResource("/resources/img/profileIconSmall.png")).getImage();
+		Image profileImgHover = new ImageIcon(this.getClass().getResource("/resources/img/profileIconSmallHover.png")).getImage();
 		JButton perfilBtn = new JButton("");
 		perfilBtn.setBounds(244, 545, 50, 50);
 		perfilBtn.setBorderPainted(false);
@@ -193,8 +193,8 @@ public class vistaInicioSesion {
 		});
 		frame.getContentPane().add(perfilBtn);
 		
-		Image verReservasImg = new ImageIcon(this.getClass().getResource("/img/menuIcon.png")).getImage();
-		Image verReservasImgHover = new ImageIcon(this.getClass().getResource("/img/menuIconHover.png")).getImage();
+		Image verReservasImg = new ImageIcon(this.getClass().getResource("/resources/img/menuIcon.png")).getImage();
+		Image verReservasImgHover = new ImageIcon(this.getClass().getResource("/resources/img/menuIconHover.png")).getImage();
 		JButton verReservasBtn = new JButton("");
 		verReservasBtn.setBounds(41, 545, 50, 50);
 		verReservasBtn.setBorderPainted(false);
@@ -208,8 +208,8 @@ public class vistaInicioSesion {
 		});
 		frame.getContentPane().add(verReservasBtn);
 		
-		Image homeImg = new ImageIcon(this.getClass().getResource("/img/homeIcon.png")).getImage();
-		Image homeImgHover = new ImageIcon(this.getClass().getResource("/img/homeIconHover.png")).getImage();
+		Image homeImg = new ImageIcon(this.getClass().getResource("/resources/img/homeIcon.png")).getImage();
+		Image homeImgHover = new ImageIcon(this.getClass().getResource("/resources/img/homeIconHover.png")).getImage();
 		JButton homeBtn = new JButton();
 		homeBtn.setBounds(141, 545, 50, 50);
 		homeBtn.setBorderPainted(false);
@@ -442,6 +442,7 @@ public class vistaInicioSesion {
 		JComboBox<String> tipoVehiculoDropDown = new JComboBox();
 		tipoVehiculoDropDown.setModel(new DefaultComboBoxModel(new String[] {"Motocicleta", "Automóvil particular", "Bus particular"}));
         tipoVehiculoDropDown.setBackground(Color.WHITE);
+		tipoVehiculoDropDown.setSelectedItem(null);
         tipoVehiculoDropDown.addActionListener(e -> {
 			String seleccionado = tipoVehiculoDropDown.getSelectedItem().toString();
 			switch (seleccionado){
@@ -526,7 +527,7 @@ public class vistaInicioSesion {
 		frame.getContentPane().add(userNameLbl);
 
         JLabel largeProfileLbl = new JLabel();
-        Image largeProfile = new ImageIcon(this.getClass().getResource("/img/profileIcon.png")).getImage();
+        Image largeProfile = new ImageIcon(this.getClass().getResource("/resources/img/profileIcon.png")).getImage();
         largeProfileLbl.setIcon(new ImageIcon(largeProfile));
 		largeProfileLbl.setBounds(15,0,300,300);
         frame.getContentPane().add(largeProfileLbl);

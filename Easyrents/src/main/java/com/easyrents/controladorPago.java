@@ -4,12 +4,14 @@ public class controladorPago {
     private Pago pago;
     private vistaPago vistaPago;
 
+    //CONSTRUCTOR
     public controladorPago(Pago pago, vistaPago vistaPago){
         this.pago = pago;
         this.vistaPago = vistaPago;
     }
 
-    public void procesarPago(int reservaId, String metodoPago) {
+
+    public void procesarPago(int reservaId, String metodoPago, ) {
         if(reservaId <= 0 || metodoPago == null || metodoPago.isEmpty()){
             //mejor implementar devolver valores, que luego seran procesados en el main
             //que devolver texto. En mi opinion, Hector

@@ -10,7 +10,7 @@ public class Usuario {
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;
-        this.contraseña = contraseña;
+        setContraseña(contraseña);
         this.tipoUsuario = tipoUsuario;
     }
 
@@ -18,6 +18,7 @@ public class Usuario {
     public int getID(){return id;}
     public String getNombre(){return nombre;}
     public String getCorreo(){return correo;}
+    //eliminar getter de contrasena para mejorar seguridad?
     public String getContraseña(){return contraseña;}
     public String getTipoUsuario(){return tipoUsuario;}
 
@@ -25,7 +26,14 @@ public class Usuario {
     public void setID(int id){this.id = id;}
     public void setNombre(String nombre){this.nombre = nombre;}
     public void setCorreo(String correo){this.correo = correo;}
-    public void setContraseña(String contraseña){this.contraseña = contraseña;}
+    public void setContraseña(String contraseña) { 
+        // Validar contraseña
+        if (contraseña.length() >= 6) {
+            this.contraseña = contraseña;
+        } else {
+            throw new IllegalArgumentException("La contraseña debe tener al menos 6 caracteres");
+        }
+    }
     public void setTipoUsuario(String tipoUsuario){this.tipoUsuario = tipoUsuario;}
 
     //TOSTRING

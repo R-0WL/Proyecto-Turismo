@@ -56,7 +56,6 @@ public class Vehiculo {
             throw new IllegalArgumentException("El precio ingresado no es valido");
         }
     }
-    
     public void setDisponible(boolean disponible){this.disponible = disponible;}
 
     //TOSTRING
@@ -88,7 +87,7 @@ public class Vehiculo {
     return resultados;
     }
 
-    //
+    //iterar listaVehiculo comparando IDs
     public static Optional<Vehiculo> buscarVehiculosID(int vehiculoId, AbstractList<Vehiculo> listaVehiculos) {
         for(Vehiculo vehiculo : listaVehiculos){
             if(vehiculo.getID() == vehiculoId){

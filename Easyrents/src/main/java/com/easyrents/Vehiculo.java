@@ -1,3 +1,4 @@
+import java.time.Year;
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +18,11 @@ public class Vehiculo {
         this.id = id;
         this.marca = marca;
         this.modelo = modelo;
-        this.año = año;
+        //ingreso por set para validacion
+        setAño(año);
         this.tipo = tipo;
-        this.precio = precio;
+        //ingreso por set para validacion
+        setPrecio(precio);
         this.disponible = disponible;
     }
     
@@ -36,9 +39,24 @@ public class Vehiculo {
     public void setID(int id){this.id = id;}
     public void setMarca(String marca){this.marca = marca;}
     public void setModelo(String modelo){this.modelo = modelo;}
-    public void setAño(int año){this.año = año;}
+    //valida que el año sea mayor a 1885 y menor o igual al actual
+    public void setAño(int año){
+        if (año <= Year.now().getValue() && año >= 1885) {
+            this.año = año;
+        } else {
+            throw new IllegalArgumentException("El año que ingreso no es valido");
+        }
+    }
     public void setTipo(String tipo){this.tipo = tipo;}
-    public void setPrecio(double precio){this.precio = precio;}
+    //valida precio mayor a 0
+    public void setPrecio(double precio){
+        if (precio > 0) {
+            this.precio = precio;
+        } else {
+            throw new IllegalArgumentException("El precio ingresado no es valido");
+        }
+    }
+    }
     public void setDisponible(boolean disponible){this.disponible = disponible;}
 
     //TOSTRING

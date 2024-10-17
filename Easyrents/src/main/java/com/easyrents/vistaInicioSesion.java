@@ -117,7 +117,7 @@ public class vistaInicioSesion {
                     return;
                 }else{
                     // USUARIO DE PRUEBA: (FALTA HACER LA LOGIN CON LA BASE DE DATOS Y VALIDAR)
-                    Usuario usuarioActual = new Usuario(298649667, "Santiago Cordero Quirós", "cor24472@uvg.edu.gt", "pepe123", "Turismo");
+                    Usuario usuarioActual = new Usuario(00000000, "Usuario Prueba", "correodelusuario@gmail.com", "pepe123", "Turismo");
                     redireccionarDashboard(frame, usuarioActual);
                 }
             }
@@ -540,7 +540,7 @@ public class vistaInicioSesion {
         userNameLblString += "</html>";
 		JLabel userNameLbl = new JLabel(userNameLblString);
 		userNameLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 30));
-		userNameLbl.setBounds(180, 65, 166, userNameLblHeight);
+		userNameLbl.setBounds(180, 75, 166, userNameLblHeight);
 		frame.getContentPane().add(userNameLbl);
 
         JLabel largeProfileLbl = new JLabel();
@@ -597,8 +597,8 @@ public class vistaInicioSesion {
 		frame.getContentPane().add(correoLbl);
 		
 		JLabel correoValueLbl = new JLabel(currentUsuario.getCorreo());
-		correoValueLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 17));
-		correoValueLbl.setBounds(159, 324, 175, 31);
+		correoValueLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 13));
+		correoValueLbl.setBounds(159, 326, 175, 31);
 		frame.getContentPane().add(correoValueLbl);
     }
 

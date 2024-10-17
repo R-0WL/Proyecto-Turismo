@@ -17,9 +17,9 @@ public class EasyRents {
 		frmEasyrents.setTitle("EasyRents");
 		frmEasyrents.setSize(360, 640);
 		frmEasyrents.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmEasyrents.setLocationRelativeTo(null);
+		frmEasyrents.setLocationRelativeTo(
+			null);
         frmEasyrents.setLayout(null);
-
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

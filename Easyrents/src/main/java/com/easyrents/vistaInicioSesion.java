@@ -17,6 +17,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.JList;
+import javax.swing.ListSelectionModel;
 
 public class vistaInicioSesion {
 
@@ -115,7 +117,7 @@ public class vistaInicioSesion {
                     return;
                 }else{
                     // USUARIO DE PRUEBA: (FALTA HACER LA LOGIN CON LA BASE DE DATOS Y VALIDAR)
-                    Usuario usuarioActual = new Usuario(9999999, "Santiago Cordero Quirós", "cor24472@uvg.edu.gt", "pepe123", "Turismo");
+                    Usuario usuarioActual = new Usuario(298649667, "Santiago Cordero Quirós", "cor24472@uvg.edu.gt", "pepe123", "Turismo");
                     redireccionarDashboard(frame, usuarioActual);
                 }
             }
@@ -443,34 +445,39 @@ public class vistaInicioSesion {
 		tipoVehiculoDropDown.setModel(new DefaultComboBoxModel(new String[] {"Motocicleta", "Automóvil particular", "Bus particular"}));
         tipoVehiculoDropDown.setBackground(Color.WHITE);
 		tipoVehiculoDropDown.setSelectedItem(null);
+
+		JList<String> vehiculoDropDown = new JList<String>();
+		vehiculoDropDown.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 16));
+		vehiculoDropDown.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+		JScrollPane resultsScrollPane = new JScrollPane(vehiculoDropDown);
+		resultsScrollPane.setViewportBorder(null);
+		resultsScrollPane.setBounds(10, 180, 324, 262);
+		frame.getContentPane().add(resultsScrollPane);
+
         tipoVehiculoDropDown.addActionListener(e -> {
 			String seleccionado = tipoVehiculoDropDown.getSelectedItem().toString();
+			String[] datos = new String[2]; // Sacar de la base de datos todos los datos de los vehículos parseados como una lista de Strings
+			// Filtrar los datos por cada uno de los tipos
+			String[] datosFiltradosMotos = {"Ducati Panigale 2016 Q.350/día", "Harley Davidson 2024 Q.250/día"};
+			String[] datosFiltradosAutos = {"Audi R8 2024 Q.500/día", "BMW M3 2023 Q.600/día"};
+			String[] datosFiltradosBuses = {"Audi RS99 2015 Q.1250/día", "Mazda T3500 2017 Q.950/día"};
+			vehiculoDropDown.removeAll();
+			vehiculoDropDown.revalidate();
+			vehiculoDropDown.repaint();
+			frame.getContentPane().revalidate();
+			frame.repaint();
+			resultsScrollPane.revalidate();
+			resultsScrollPane.repaint();
 			switch (seleccionado){
 				case "Motocicleta":
-					String[] datos = new String[2]; // Sacar de la base de datos todos los datos de los vehículos parseados como una lista de Strings
-					// IMPLEMENTAR LÓGICA PARA FILTRAR DATOS
-					String[] datosFiltrados = new String[2];
-					JComboBox<String> vehiculoDropDown = new JComboBox<String>(datosFiltrados);
-					JScrollPane resultsScrollPane = new JScrollPane(vehiculoDropDown);
-					resultsScrollPane.setViewportBorder(null);
-					resultsScrollPane.setBounds(10, 180, 324, 262);
-					frame.getContentPane().add(resultsScrollPane);
-					vehiculoDropDown.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							String seleccionado = vehiculoDropDown.getSelectedItem().toString();
-							for(int i = 0; i < datosFiltrados.length; i++){
-								if(datosFiltrados[i].equals(seleccionado)){
-									vehiculoDropDown.setSelectedIndex(i);
-								}
-							}
-						}
-					});
+					vehiculoDropDown.setListData(datosFiltradosMotos);
 					break;
 				case "Automóvil particular":
-					// Hacer que muestre todos los automóviles en el vehiculoDropDown
+					vehiculoDropDown.setListData(datosFiltradosAutos);
 					break;
 				case "Bus particular":
-					// Hacer que muestre todos los buses en el vehiculoDropDown
+					vehiculoDropDown.setListData(datosFiltradosBuses);
 					break;
 			}
 		});
@@ -484,19 +491,29 @@ public class vistaInicioSesion {
 		reservarBtn.setBounds(90, 457, 156, 65);
 		reservarBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent a) {
-				// CREAR INSTANCIA DE VEHÍCULO CON LOS DATOS DEL DROPDOWN 
-				/*
-				Sring[] datosVehiculo = vehiculoDropDown.getSelectedItem().toString().split(" ");
-				String nombreVehiculo = datosVehiculo[0];
-				String tipoVehiculo = datosVehiculo[1];
-				...
-				Vehiculo vehiculo = new Vehiculo(nombreVehiculo, tipoVehiculo);
-				 */
-
-				// Vehiculo prueba:
-				Vehiculo vehiculoSeleccionado = new Vehiculo(0001, "Ducati", "Panigale", 2016, "Motocicleta", 350, true);
-				vistaReservacion vistaRes = new vistaReservacion();
-				vistaRes.mostrarFormularioReservacion(vehiculoSeleccionado, frame, currentUsuario);
+				if(tipoVehiculoDropDown.getSelectedItem() == null || vehiculoDropDown.getSelectedValue() == null){
+					mostrarError("Debe de seleccionar un tipo de vehículo y un modelo.");
+					return;
+				}else{
+					// Vehiculo prueba:
+					// Casilla 0 -> Marca; Casilla 1 -> Modelo; Casilla 2 -> Año; Casilla 3 -> Precio
+					String[] datosVehiculo = vehiculoDropDown.getSelectedValue().toString().split(" ");
+					String tipoAuto = "";
+					switch (tipoVehiculoDropDown.getSelectedItem().toString()){
+						case "Motocicleta":
+							tipoAuto = "Motocicleta";
+							break;
+						case "Automóvil particular":
+							tipoAuto = "Automóvil particular";
+							break;
+						case "Bus particular":
+							tipoAuto = "Bus particular";
+							break;
+					}
+					Vehiculo vehiculoSeleccionado = new Vehiculo(1, datosVehiculo[0], datosVehiculo[1], Integer.parseInt(datosVehiculo[2]), tipoAuto, Double.parseDouble(datosVehiculo[3].replaceAll("Q.", "").replaceAll("/día", "")), true);
+					vistaReservacion vistaRes = new vistaReservacion();
+					vistaRes.mostrarFormularioReservacion(vehiculoSeleccionado, frame, currentUsuario);
+				}
 			}
 		});
 		frame.getContentPane().add(reservarBtn);
@@ -532,22 +549,20 @@ public class vistaInicioSesion {
 		largeProfileLbl.setBounds(15,0,300,300);
         frame.getContentPane().add(largeProfileLbl);
 
-        // FALTA CREAR LA ITERACIÓN DE LAS LISTAS DEL USUARIO Y MOSTRARLAS COMO LISTA.
-        /*
-        String[] licencias = currentUsuario.getLicencias();
-        String licenciasLblString = "<html> ";
+        String[] licencias = {"29518261", "52912112", "1582925"}; // DEBERÍA DE SER usuario.getLicencias(), TODAVIA NO EXISTE EL MÉTODO.
+        String licenciasLblString = "<html>";
         int licenciasLblHeight = 0;
         int j = 0;
         for(String l : licencias){
-            licenciasLblString += (l + "<br/>");
-            licenciasLblHeight += 18 * j;
+            licenciasLblString += ("<br/> - " + l);
+            licenciasLblHeight += 28 * j;
             j++;
         }
-        */
+		licenciasLblString += "</html>";
 
-        JLabel licenciasListLabel = new JLabel("- ");
-		licenciasListLabel.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
-		licenciasListLabel.setBounds(46, 401, 139, 21);
+        JLabel licenciasListLabel = new JLabel(licenciasLblString);
+		licenciasListLabel.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 16));
+		licenciasListLabel.setBounds(46, 380, 139, licenciasLblHeight);
 		frame.getContentPane().add(licenciasListLabel);
 		
 		JLabel licenciaLbl = new JLabel("Licencias Asociadas:");
@@ -560,7 +575,7 @@ public class vistaInicioSesion {
 		telefonoTxtLabel.setBounds(10, 240, 71, 31);
 		frame.getContentPane().add(telefonoTxtLabel);
 
-        JLabel telefonoValueLbl = new JLabel("128951928"); // currentusuario.getTelefono() falta
+        JLabel telefonoValueLbl = new JLabel("42165624"); // FALTA COLOCAR .getTelefono() COMO MÉTODO DE USUARIO
 		telefonoValueLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 17));
 		telefonoValueLbl.setBounds(91, 240, 150, 31);
 		frame.getContentPane().add(telefonoValueLbl);
@@ -600,8 +615,11 @@ public class vistaInicioSesion {
 		String[] reservas = currentUsuario.getReservas();
         String reservasLblString = "<html> ";
         int reservasLblHeight = 0;
+		int k = 0;
         for(String l : reservas){
             reservasLblString += (l + "<br/>");
+			reservasLblHeight += 25 * k;
+			k++;
         }
 		*/
 		
@@ -614,9 +632,5 @@ public class vistaInicioSesion {
 		reservasPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		reservasPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		frame.getContentPane().add(reservasPane);
-	}
-
-	public void redireccionarReservacion(JFrame frame, Usuario currentUsuario) {
-		// Implementar lógica de crear una nueva pestaña donde se pueda ver los detalles del vehículo seleccionado y confirmar el pago con la clase vistaReservacion.
 	}
 }

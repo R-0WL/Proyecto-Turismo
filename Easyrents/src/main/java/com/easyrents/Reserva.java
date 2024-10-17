@@ -14,8 +14,9 @@ public class Reserva {
         this.usuario = usuario;
         this.vehiculo = vehiculo;
         this.fechaInicio = fechaInicio;
+        //validacion
         setFechaFin(fechaFin);
-        this.monto = monto;
+        setMonto(monto);
     }
     
     //GETTERS
@@ -31,6 +32,7 @@ public class Reserva {
     public void setUsuario(Usuario usuario) {this.usuario = usuario;}
     public void setVehiculo(Vehiculo vehiculo) {this.vehiculo = vehiculo;}
     public void setFechaInicio(LocalDate fechaInicio) {this.fechaInicio = fechaInicio;}
+    //validar fecha final despues de inicial
     public void setFechaFin(LocalDate fechaFin) {
         if (fechaFin.isAfter(fechaInicio)) {
             this.fechaFin = fechaFin;
@@ -38,7 +40,14 @@ public class Reserva {
             throw new IllegalArgumentException("La fecha final debe ser posterior a la fecha de inicio");
         }
     }
-    public void setMonto(double monto) {this.monto = monto;}
+    //validar monto mayor 0
+    public void setMonto(double monto) {
+        if (monto > 0) {
+            this.monto = monto;
+        } else {
+            throw new IllegalArgumentException("El monto ingresado no es valido");
+        }
+    }
     
     //TOSTRING
     @Override

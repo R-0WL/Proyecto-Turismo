@@ -1,26 +1,40 @@
 package com.easyrents;
 
 import java.util.*;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 public class vistaBusquedaVehiculos {
-    private JFrame frame; // Ventana principal
+    private DefaultListModel<String> modeloListaVehiculos; // Modelo de lista para mostrar vehículos
+    private JPanel panelDetalles; // Panel para mostrar detalles del vehículo
 
-    // Constructor para inicializar la ventana
     public vistaBusquedaVehiculos() {
         frame = new JFrame("Búsqueda de Vehículos");
         frame.setSize(400, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
+        
+        modeloListaVehiculos = new DefaultListModel<>(); // Inicializa el modelo de lista
+        JList<String> listaVehiculos = new JList<>(modeloListaVehiculos); // Crea la lista
+        frame.add(new JScrollPane(listaVehiculos), BorderLayout.CENTER); // Agrega la lista al marco
+
+        panelDetalles = new JPanel(); // Inicializa el panel de detalles
+        frame.add(panelDetalles, BorderLayout.SOUTH); // Agrega el panel de detalles al marco
     }
+    
     public void mostrarResultadosBusqueda(List<Vehiculo> vehiculos) {
         modeloListaVehiculos.clear(); // Limpiar la lista antes de mostrar nuevos resultados
         for (Vehiculo vehiculo : vehiculos) {
             modeloListaVehiculos.addElement(vehiculo.getModelo()); // Mostrar el modelo del vehículo
         }
     }
+    
     public void mostrarDetallesVehiculo(Vehiculo vehiculo) {
         // Limpiar el panel de detalles antes de mostrar nueva información
         panelDetalles.removeAll();

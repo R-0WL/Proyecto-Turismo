@@ -53,3 +53,4 @@ public class Pago {
         return "Pago [id=" + id + ", reserva=" + reserva + ", monto=" + monto + ", fechaPago=" + fechaPago
                 + ", metodoPago=" + metodoPago + "]";
     }
+}

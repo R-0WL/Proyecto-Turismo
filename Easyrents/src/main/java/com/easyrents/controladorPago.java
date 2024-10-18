@@ -1,3 +1,5 @@
+package com.easyrents;
+
 //Requisitos funcionales a cumplir: 7.Pago y Facturacion
 //Separar Pago y Facturacion en diferentes clases?
 

@@ -1,4 +1,5 @@
 //Requisitos funcionales a cumplir: 7.Busqueda de Vehiculos
+package com.easyrents;
 import java.util.List;
 
 public class controladorVehiculo {

@@ -1,3 +1,5 @@
+package com.easyrents;
+
 //Requisitos a cumplir: 2.Reservacion de Vehiculos / 3.Revision y confirmacion de reservas
 //separar tambien en clase por funcion
 import java.util.Date;

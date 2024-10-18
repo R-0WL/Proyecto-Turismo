@@ -1,3 +1,5 @@
+package com.easyrents;
+
 import java.util.*;
 import javax.swing.JFrame;
 import javax.swing.JLabel;

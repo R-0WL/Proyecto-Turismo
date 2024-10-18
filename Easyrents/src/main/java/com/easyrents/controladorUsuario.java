@@ -1,4 +1,5 @@
 //Requisitos funcionales a cumplir: 4.Registro y autenticacion de Usuarios / 5.Perfil Usuario
+package com.easyrents;
 public class controladorUsuario {
     private Usuario usuario;
     private vistaInicioSesion vistaInicioSesion;

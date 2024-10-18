@@ -1,7 +1,12 @@
+package com.easyrents;
+
 import java.awt.EventQueue;
-import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class EasyRents {
 
@@ -12,6 +17,23 @@ public class EasyRents {
 	// private static ArrayList<Vehiculo> listaVehiculos;
 
 	public static void main(String[] args) {
+
+		try {
+			Connection conn = DatabaseConnection.getConnection();
+			Statement stmt = conn.createStatement();
+			String query = "INSERT INTO userslist (correo, contraseña, dpi, nombre, apellido, edad, numreservas_activas, numreservas_pasadas, licencia_moto, licencia_carro, licencia_bus) " + "VALUES ('emailforexample@gmail.com', '12345678', " + 1784567898 + ", 'Nombre prueba', 'apellido prueba', " + 29 + ", " + 0 + ", " + 0 + "," + true + "," + true + "," + true + ")";
+			String query2 ="DELETE FROM userslist WHERE dpi = 1234567898";
+			stmt.executeUpdate(query);
+
+			JOptionPane.showMessageDialog(null, "USUARIO GUARADADO CON EXITO");
+			stmt.executeUpdate(query2);
+			JOptionPane.showMessageDialog(null, "USUARIO Eliminado CON EXITO");
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
+
+		
+
 		frmEasyrents = new JFrame();
 		frmEasyrents.setVisible(true);
 		frmEasyrents.setTitle("EasyRents");

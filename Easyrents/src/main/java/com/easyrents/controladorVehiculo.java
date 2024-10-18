@@ -34,13 +34,14 @@ public class controladorVehiculo {
         if (vehiculoId <= 0) {
             vistaBusquedaVehiculos.mostrarError("El ID del vehículo no es válido.");
             return;
-        }
-
-        Vehiculo vehiculoEncontrado = Vehiculo.obtenerVehiculoPorID(vehiculoId, listaVehiculos);
-        if (vehiculoEncontrado != null) {
-            vistaBusquedaVehiculos.mostrarDetallesVehiculo(vehiculoEncontrado);
         } else {
-            vistaBusquedaVehiculos.mostrarError("No se encontraron vehículos disponibles con el ID proporcionado.");
+            Vehiculo vehiculoEncontrado = Vehiculo.obtenerVehiculoPorID(vehiculoId, listaVehiculos);
+            if (vehiculoEncontrado != null) {
+                vistaBusquedaVehiculos.mostrarDetallesVehiculo(vehiculoEncontrado);
+            } else {
+                vistaBusquedaVehiculos.mostrarError("No se encontraron vehículos disponibles con el ID proporcionado.");
+            }
+            return;
         }
     }
 }

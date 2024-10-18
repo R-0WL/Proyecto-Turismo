@@ -13,7 +13,7 @@ public class controladorUsuario {
     }
 
     // Método para mostrar mensajes en ventanas emergentes
-    private void mostrarMensaje(String mensaje) {
+	private static mostrarMensaje(String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje);
     }
 

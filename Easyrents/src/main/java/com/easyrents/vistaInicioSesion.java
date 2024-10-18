@@ -25,68 +25,69 @@ import javax.swing.ListSelectionModel;
 public class vistaInicioSesion {
 
     public void mostrarFormulario(JFrame frame) {
+		//preparar pantalla
         frame.getContentPane().removeAll();
         frame.repaint();
-        
+        //subir logo
         Image iconImage = new ImageIcon(this.getClass().getResource("/resources/img/easyLogo.png")).getImage();
         frame.setIconImage(iconImage);
-
+		//espacio clave
         JPasswordField passwordField = new JPasswordField();
 		passwordField.setBounds(32, 279, 280, 30);
 		passwordField.setToolTipText("Contraseña");
 		passwordField.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 16));
 		passwordField.setBackground(Color.WHITE);
 		frame.add(passwordField);
-		
+		//etiqueta bienvenida
 		JLabel welcomeLbl = new JLabel("¡Bienvenid@ a EasyRents!");
 		welcomeLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 19));
 		welcomeLbl.setLabelFor(frame);
 		welcomeLbl.setBounds(68, 158, 211, 36);
 		frame.getContentPane().add(welcomeLbl);
-		
+		//etiqueta visitar
 		JLabel visitanosLbl = new JLabel("¡Visítanos en redes sociales!");
 		visitanosLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 15));
 		visitanosLbl.setBounds(87, 481, 180, 36);
 		frame.getContentPane().add(visitanosLbl);
-		
+		//subir logo twitter
 		JLabel imgTwitter = new JLabel("");
 		Image imgTwit = new ImageIcon(this.getClass().getResource("resources/img/twitter-icon.png")).getImage();
 		imgTwitter.setIcon(new ImageIcon(imgTwit));
 		imgTwitter.setBounds(180, 518, 50, 50);
 		frame.getContentPane().add(imgTwitter);
-		
+		//subir logo Insta
 		JLabel imgInsta = new JLabel("");
 		Image imgIg = new ImageIcon(this.getClass().getResource("/resources/img/insta-icon.png")).getImage();
 		imgInsta.setIcon(new ImageIcon(imgIg));
 		imgInsta.setBounds(110, 518, 50, 50);
 		frame.getContentPane().add(imgInsta);
-		
+		//espacio email
 		JTextField txtCorreoElectrnico = new JTextField();
 		txtCorreoElectrnico.setToolTipText("Correo Electrónico");
 		txtCorreoElectrnico.setBackground(Color.WHITE);
 		txtCorreoElectrnico.setBounds(32, 224, 280, 30);
 		frame.getContentPane().add(txtCorreoElectrnico);
-		
+		//etiqueta logo
 		JLabel lbleasyrents = new JLabel("@EasyRents");
 		lbleasyrents.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 15));
 		lbleasyrents.setBounds(130, 565, 85, 36);
 		frame.getContentPane().add(lbleasyrents);
-		
+		//etiqueta create account
 		JLabel visitanosLbl_1 = new JLabel("¿No tienes una cuenta?");
 		visitanosLbl_1.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 15));
 		visitanosLbl_1.setBounds(99, 377, 199, 36);
 		frame.getContentPane().add(visitanosLbl_1);
-
+		//etiqueta email
         JLabel lblCorreoElectrnico = new JLabel("Correo electrónico:");
 		lblCorreoElectrnico.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 13));
 		lblCorreoElectrnico.setBounds(115, 193, 105, 36);
 		frame.getContentPane().add(lblCorreoElectrnico);
-		
+		//etiqueta password
 		JLabel lblContrasea = new JLabel("Contraseña:");
 		lblContrasea.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 13));
 		lblContrasea.setBounds(137, 250, 64, 36);
 		frame.getContentPane().add(lblContrasea);
-		
+		//boton crear cuenta, redirecciona pantalla crear cuenta
 		JButton createAccountBtn = new JButton("Crear Cuenta");
 		createAccountBtn.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
 		createAccountBtn.setBounds(109, 413, 121, 30);
@@ -98,32 +99,49 @@ public class vistaInicioSesion {
             }
         });
 		frame.getContentPane().add(createAccountBtn);
-		
+		//boton login
 		JButton loginBtn_1 = new JButton("Iniciar Sesión");
 		loginBtn_1.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 15));
 		loginBtn_1.setBounds(109, 320, 121, 47);
         loginBtn_1.setBackground(Color.WHITE);
-        loginBtn_1.addActionListener(new ActionListener() {
-            // CONDICIONAL QUE VENDRÁ DE VALIDAR LOS DATOS DEL USUARIO, FALTA IMPLEMENTAR
-            boolean credentialsValidated = true;
-            @Override
-            public void actionPerformed(ActionEvent e){
-                if((txtCorreoElectrnico.getText().replaceAll("\\s+","").equals("")) || (passwordField.getPassword().toString().replaceAll("\\s+","").equals(""))){
-                    mostrarError("Debe de ingresar un correo y su contraseña respectiva.");
-                    return;
-                }else if(!credentialsValidated){
-                    mostrarError("Las credenciales ingresadas no son correctas, vuelva a intentar.");
-                    return;
-                }else if(!txtCorreoElectrnico.getText().contains("@")){
-                    mostrarError("Debe de ingresar una dirección de correo válida");
-                    return;
-                }else{
-                    // USUARIO DE PRUEBA: (FALTA HACER LA LOGIN CON LA BASE DE DATOS Y VALIDAR)
-                    Usuario usuarioActual = new Usuario(00000000, "Usuario Prueba", "correodelusuario@gmail.com", "pepe123", "Turismo");
-                    redireccionarDashboard(frame, usuarioActual);
-                }
-            }
-        });
+        // CONDICIONAL QUE VENDRÁ DE VALIDAR LOS DATOS DEL USUARIO, FALTA IMPLEMENTAR
+		Usuario usuarioActual = new Usuario(298649667, "Santiago Cordero Quirós", "cor24472@uvg.edu.gt", "pepe123", "Turismo");
+		//usuario actual, prueba momentanea
+		loginBtn_1.addActionListener(new ActionListener() {		
+			public void actionPerformed(ActionEvent e){
+				String passwordIngresado = new String(passwordField.getPassword());
+				String correoIngresado = txtCorreoElectrnico.getText();
+				if((correoIngresado.equals("")) || (passwordIngresado.equals(""))){
+					mostrarError("Debe de ingresar un correo y su contraseña respectiva.");
+					return;
+				}else if(!correoIngresado.contains("@")){
+					mostrarError("Debe de ingresar una dirección de correo válida");
+					return;
+				}else if(!(correoIngresado.equals(usuarioActual.getCorreo()) && passwordIngresado.equals(usuarioActual.getContraseña()))){
+					mostrarError("Las credenciales ingresadas no son correctas, vuelva a intentar.");
+					return;
+				}else{
+					redireccionarDashboard(frame, usuarioActual);
+				}
+			}
+			public void actionPerformed2(ActionEvent e){
+				if((txtCorreoElectrnico.getText().replaceAll("\\s+","").equals("")) || (passwordField.getPassword().toString().replaceAll("\\s+","").equals(""))){
+					mostrarError("Debe de ingresar un correo y su contraseña respectiva.");
+					return;
+				}else if(!credentialsValidated){
+					mostrarError("Las credenciales ingresadas no son correctas, vuelva a intentar.");
+					return;
+				}else if(!txtCorreoElectrnico.getText().contains("@")){
+					mostrarError("Debe de ingresar una dirección de correo válida");
+					return;
+				}else{
+					// USUARIO DE PRUEBA: (FALTA HACER LA LOGIN CON LA BASE DE DATOS Y VALIDAR)
+					Usuario usuarioActual = new Usuario(00000000, "Usuario Prueba", "correodelusuario@gmail.com", "pepe123", "Turismo");
+					redireccionarDashboard(frame, usuarioActual);
+					return;
+				}
+			}
+		});
 		frame.getContentPane().add(loginBtn_1);
 
         JLabel logoImageLabel = new JLabel();

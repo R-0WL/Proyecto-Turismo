@@ -1,41 +1,46 @@
-//Requisitos funcionales a cumplir: 7.Busqueda de Vehiculos
 package com.easyrents;
+
 import java.util.List;
 
-public class controladorVehiculo {
-    private vistaBusquedaVehiculos vistaBusquedaVehiculos;
-    private List<Vehiculo> listaVehiculos;
+//AGREGAR METODOS MOSTRAR A VISTABUSCARVEHICULO!!!
 
-    public controladorVehiculo(vistaBusquedaVehiculos vistaBusquedaVehiculos, List<Vehiculo> listaVehiculos){
+public class controladorVehiculo {
+    private VistaBusquedaVehiculos vistaBusquedaVehiculos;
+    private List<Vehiculo> listaVehiculos; // Cambiado a List para mayor flexibilidad
+
+    // Constructor
+    public controladorVehiculo(VistaBusquedaVehiculos vistaBusquedaVehiculos, List<Vehiculo> listaVehiculos) {
         this.vistaBusquedaVehiculos = vistaBusquedaVehiculos;
         this.listaVehiculos = listaVehiculos;
     }
 
-    public void buscarVehiculos(String criteriosBusqueda) {
-        if(criteriosBusqueda == null || criteriosBusqueda.isEmpty()){
+    // Método para buscar vehículos
+    public void buscarVehiculos(String marca, String modelo, String tipo) {
+        if (marca.isEmpty() && modelo.isEmpty() && tipo.isEmpty()) {
             vistaBusquedaVehiculos.mostrarError("Por favor, ingrese todos los criterios de búsqueda.");
             return;
         }
-        List<Vehiculo> resultados = Vehiculo.buscarVehiculos(criteriosBusqueda, listaVehiculos);
-        if(resultados.isEmpty()){
-            vistaBusquedaVehiculos.mostrarError("No se encontraron vehiculos disponibles.");
-        }
-        else {
+
+        List<Vehiculo> resultados = Vehiculo.buscarVehiculos(marca, modelo, tipo, listaVehiculos);
+        if (resultados.isEmpty()) {
+            vistaBusquedaVehiculos.mostrarError("No se encontraron vehículos disponibles.");
+        } else {
             vistaBusquedaVehiculos.mostrarResultadosBusqueda(resultados);
         }
     }
-    
+
+    // Método para mostrar detalles de un vehículo
     public void mostrarDetallesVehiculo(int vehiculoId) {
-        if(vehiculoId <= 0){
+        if (vehiculoId <= 0) {
             vistaBusquedaVehiculos.mostrarError("El ID del vehículo no es válido.");
             return;
         }
+
         Vehiculo vehiculoEncontrado = Vehiculo.obtenerVehiculoPorID(vehiculoId, listaVehiculos);
-        if(vehiculoEncontrado != null){
+        if (vehiculoEncontrado != null) {
             vistaBusquedaVehiculos.mostrarDetallesVehiculo(vehiculoEncontrado);
-        }
-        else {
-            vistaBusquedaVehiculos.mostrarError("No se encontraron vehículos disponibles.");
+        } else {
+            vistaBusquedaVehiculos.mostrarError("No se encontraron vehículos disponibles con el ID proporcionado.");
         }
     }
 }

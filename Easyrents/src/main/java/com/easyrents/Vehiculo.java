@@ -69,9 +69,9 @@ public class Vehiculo {
 
     //compara los datos ingresados con los datos de los carros en el sistema y devuelve una lista con todos los carros que compartan datos
     //static hace que se pueda usar sin crear un nuevo objeto Vehiculo, los 2 metodos siguientes
-    public static AbstractList<Vehiculo> buscarVehiculosStr(String marca, String modelo, String tipo, AbstractList<Vehiculo> listaVehiculos) {
+    public static List<Vehiculo> buscarVehiculosStr(String marca, String modelo, String tipo, List<Vehiculo> listaVehiculos) {
         //metodo devuelve una lista de vehiculos
-        AbstractList<Vehiculo> resultados = new ArrayList<Vehiculo>();
+        List<Vehiculo> resultados = new ArrayList<Vehiculo>();
         //ArrayList implements AbstractList (implements List)
         //List<> te permite cambiar fácilmente entre diferentes implementaciones de la interfaz AbstractList sin afectar 
         //el código que usa la lista. Por ejemplo, puedes cambiar de ArrayList<> a LinkedList<> sin modificar demasiado el código
@@ -90,7 +90,7 @@ public class Vehiculo {
     }
 
     //iterar listaVehiculo comparando IDs
-    public static Optional<Vehiculo> buscarVehiculosID(int vehiculoId, AbstractList<Vehiculo> listaVehiculos) {
+    public static Optional<Vehiculo> buscarVehiculosID(int vehiculoId, List<Vehiculo> listaVehiculos) {
         for(Vehiculo vehiculo : listaVehiculos){
             if(vehiculo.getID() == vehiculoId){
                 return Optional.of(vehiculo);

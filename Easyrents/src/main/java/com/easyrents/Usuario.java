@@ -1,4 +1,7 @@
 package com.easyrents;
+
+import java.util.Objects;
+
 public class Usuario {
     private int id;
     private String nombre;
@@ -47,6 +50,25 @@ public class Usuario {
     public void setNumDocLicencia(long numDocLicencia){this.numDocLicencia = numDocLicencia;}
     public void setNumTelefono(int numTelefono){this.numTelefono = numTelefono;}
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Usuario usuario = (Usuario) o;
+        return id == usuario.id &&
+               numDocLicencia == usuario.numDocLicencia &&
+               numTelefono == usuario.numTelefono &&
+               Objects.equals(nombre, usuario.nombre) &&
+               Objects.equals(correo, usuario.correo) &&
+               Objects.equals(contraseña, usuario.contraseña) &&
+               Objects.equals(tipoUsuario, usuario.tipoUsuario);
+    }
+
+    // Sobrescribir hashCode
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nombre, correo, contraseña, tipoUsuario, numDocLicencia, numTelefono);
+    }
     //TOSTRING
     @Override
     public String toString() {

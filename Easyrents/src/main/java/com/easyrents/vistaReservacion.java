@@ -112,6 +112,7 @@ public class vistaReservacion {
 				if(diaInicioBox.isEnabled() && diaFinalBox.isEnabled()){
 					LocalDate fechaInicio = LocalDate.of(Integer.parseInt((String) yearInicioBox.getSelectedItem()), Integer.parseInt((String) mesInicioBox.getSelectedItem()), Integer.parseInt((String) diaInicioBox.getSelectedItem()));
 					LocalDate fechaFinal = LocalDate.of(Integer.parseInt((String) yearFinalBox.getSelectedItem()), Integer.parseInt((String) mesFinalBox.getSelectedItem()), Integer.parseInt((String) diaFinalBox.getSelectedItem()));
+					
 					long numDias = Math.abs(calcDiasInBetween(fechaInicio, fechaFinal));
 					totalPagarLbl.setText("Total a pagar: Q. " + vehiculo.getPrecio() * numDias);
 					totalPagarLbl.revalidate();
@@ -124,16 +125,32 @@ public class vistaReservacion {
 
 		ActionListener cambioStringPrecioFinales = new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				actualizarDiasComboBox(mesFinalBox, yearFinalBox, diaFinalBox);
-				if(diaInicioBox.isEnabled() && diaFinalBox.isEnabled()){
-					LocalDate fechaInicio = LocalDate.of(Integer.parseInt((String) yearInicioBox.getSelectedItem()), Integer.parseInt((String) mesInicioBox.getSelectedItem()), Integer.parseInt((String) diaInicioBox.getSelectedItem()));
-					LocalDate fechaFinal = LocalDate.of(Integer.parseInt((String) yearFinalBox.getSelectedItem()), Integer.parseInt((String) mesFinalBox.getSelectedItem()), Integer.parseInt((String) diaFinalBox.getSelectedItem()));
-					long numDias = Math.abs(calcDiasInBetween(fechaInicio, fechaFinal));
-					totalPagarLbl.setText("Total a pagar: Q. " + vehiculo.getPrecio() * numDias);
-					totalPagarLbl.revalidate();
-					totalPagarLbl.repaint();
-					frame.getContentPane().revalidate();
-					frame.repaint();
+				try {
+					LocalDate fechaInicio = LocalDate.of(
+						Integer.parseInt((String) yearInicioBox.getSelectedItem()), 
+						Integer.parseInt((String) mesInicioBox.getSelectedItem()), 
+						Integer.parseInt((String) diaInicioBox.getSelectedItem())
+					);
+					LocalDate fechaFinal = LocalDate.of(
+						Integer.parseInt((String) yearFinalBox.getSelectedItem()), 
+						Integer.parseInt((String) mesFinalBox.getSelectedItem()), 
+						Integer.parseInt((String) diaFinalBox.getSelectedItem())
+					);
+					long numDias = ChronoUnit.DAYS.between(fechaInicio, fechaFinal);
+		
+					Date fechaInicioDate = Date.from(fechaInicio.atStartOfDay(ZoneId.systemDefault()).toInstant());
+					Date fechaFinalDate = Date.from(fechaFinal.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		
+					// Conversión de Date a LocalDate
+					LocalDate fechaInicioLocalDate = fechaInicioDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+					
+					double precioPagar = vehiculo.getPrecio() * numDias;
+					mostrarConfirmacion("¡Se ha creado la reserva exitosamente!");
+		
+					Reserva reservaNueva = new Reserva(0, currentUsuario, vehiculo, fechaInicioDate, fechaFinalDate, precioPagar);
+					// currentUsuario.getReservas().add(reservaNueva);
+				} catch (NumberFormatException nF) {
+					mostrarError("Debe de llenar todos los campos de fecha solicitados.");
 				}
 			}
 		};

@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 
 public class controladorUsuario {
     private Usuario usuario;
-    private vistaInicioSesion vistaInicioSesion;
+    //private vistaInicioSesion vistaInicioSesion;
 
     //CONSTRUCTOR
     public controladorUsuario(vistaInicioSesion vista){

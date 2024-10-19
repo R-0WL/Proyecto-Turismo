@@ -13,6 +13,7 @@ public class controladorVehiculo {
     public controladorVehiculo(vistaBusquedaVehiculos vistaBusquedaVehiculos, List<Vehiculo> listaVehiculos) {
         this.vistaBusquedaVehiculos = vistaBusquedaVehiculos; // Inicializa la vista de búsqueda
         // Inicializa la lista de vehículos, utilizando una lista vacía si se pasa un valor nulo
+        // ? : es el operador ternario, que es una forma abreviada de una declaración if-else
         this.listaVehiculos = listaVehiculos != null ? listaVehiculos : new ArrayList<>();
     }
 
@@ -23,18 +24,18 @@ public class controladorVehiculo {
             // Muestra un mensaje de error si los criterios no son válidos
             vistaBusquedaVehiculos.mostrarError("Por favor, ingrese todos los criterios de búsqueda.");
             return; // Sale del método si no hay criterios válidos
-        }
-        
-        // Busca vehículos que coincidan con los criterios en la lista de vehículos
-        List<Vehiculo> resultados = Vehiculo.buscarVehiculos(criteriosBusqueda, listaVehiculos);
-        
-        // Verifica si se encontraron resultados
-        if (resultados.isEmpty()) {
-            // Muestra un mensaje de error si no hay vehículos disponibles
-            vistaBusquedaVehiculos.mostrarError("No se encontraron vehiculos disponibles.");
         } else {
-            // Muestra los resultados de búsqueda en la vista
-            vistaBusquedaVehiculos.mostrarResultadosBusqueda(resultados);
+            // Busca vehículos que coincidan con los criterios en la lista de vehículos
+            List<Vehiculo> resultados = Vehiculo.buscarVehiculos(criteriosBusqueda, listaVehiculos);
+            
+            // Verifica si se encontraron resultados
+            if (resultados.isEmpty()) {
+                // Muestra un mensaje de error si no hay vehículos disponibles
+                vistaBusquedaVehiculos.mostrarError("No se encontraron vehiculos disponibles.");
+            } else {
+                // Muestra los resultados de búsqueda en la vista
+                vistaBusquedaVehiculos.mostrarResultadosBusqueda(resultados);
+            }
         }
     }
 
@@ -45,18 +46,19 @@ public class controladorVehiculo {
             // Muestra un mensaje de error si el ID no es válido
             vistaBusquedaVehiculos.mostrarError("El ID del vehículo no es válido.");
             return; // Sale del método si el ID no es válido
-        }
-        
-        // Busca el vehículo correspondiente al ID proporcionado
-        Vehiculo vehiculoEncontrado = Vehiculo.obtenerVehiculoPorID(vehiculoId, listaVehiculos);
-        
-        // Verifica si se encontró el vehículo
-        if (vehiculoEncontrado != null) {
-            // Muestra los detalles del vehículo en la vista
-            vistaBusquedaVehiculos.mostrarDetallesVehiculo(vehiculoEncontrado);
         } else {
-            // Muestra un mensaje de error si no se encontró el vehículo
-            vistaBusquedaVehiculos.mostrarError("No se encontraron vehículos disponibles.");
+            // Busca el vehículo correspondiente al ID proporcionado
+            Vehiculo vehiculoEncontrado = Vehiculo.obtenerVehiculoPorID(vehiculoId, listaVehiculos);
+            // Verifica si se encontró el vehículo
+            if (vehiculoEncontrado != null) {
+                // Muestra los detalles del vehículo en la vista
+                vistaBusquedaVehiculos.mostrarDetallesVehiculo(vehiculoEncontrado);
+            } else {
+                // Muestra un mensaje de error si no se encontró el vehículo
+                vistaBusquedaVehiculos.mostrarError("No se encontraron vehículos disponibles.");
+            }
         }
+        
+        
     }
 }

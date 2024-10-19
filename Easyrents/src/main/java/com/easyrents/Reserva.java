@@ -1,6 +1,7 @@
 package com.easyrents;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Reserva {
     private int id;
@@ -50,7 +51,25 @@ public class Reserva {
             throw new IllegalArgumentException("El monto ingresado no es valido");
         }
     }
-    
+    // Sobrescribir equals
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Reserva reserva = (Reserva) o;
+        return id == reserva.id &&
+               Double.compare(reserva.monto, monto) == 0 &&
+               Objects.equals(usuario, reserva.usuario) &&
+               Objects.equals(vehiculo, reserva.vehiculo) &&
+               Objects.equals(fechaInicio, reserva.fechaInicio) &&
+               Objects.equals(fechaFin, reserva.fechaFin);
+    }
+
+    // Sobrescribir hashCode
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, usuario, vehiculo, fechaInicio, fechaFin, monto);
+    }
     //TOSTRING
     @Override
     public String toString() {

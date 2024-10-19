@@ -60,6 +60,26 @@ public class Vehiculo {
     }
     public void setDisponible(boolean disponible){this.disponible = disponible;}
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true; // Mismo objeto
+        if (!(obj instanceof Vehiculo)) return false; // Comparar con otro tipo
+
+        Vehiculo other = (Vehiculo) obj; // Convertir a Vehiculo
+        return id == other.id &&
+            marca.equals(other.marca) &&
+            modelo.equals(other.modelo) &&
+            año == other.año; // Considerando año como parte de la igualdad
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Integer.hashCode(id); // Código hash del ID
+        result = 31 * result + marca.hashCode(); // Usando 31 como un número primo
+        result = 31 * result + modelo.hashCode(); // Código hash del modelo
+        result = 31 * result + Integer.hashCode(año); // Código hash del año
+        return result;
+    }
     //TOSTRING
     @Override
     public String toString() {

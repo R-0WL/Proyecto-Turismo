@@ -23,6 +23,7 @@ import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 
 public class vistaInicioSesion {
+	boolean credentialisValidated = false;
 
     public void mostrarFormulario(JFrame frame) {
 		//preparar pantalla

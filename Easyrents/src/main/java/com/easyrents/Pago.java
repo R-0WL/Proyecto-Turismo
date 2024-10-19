@@ -1,6 +1,7 @@
 package com.easyrents;
 
 import java.util.LocalDate;
+import java.util.Objects;
 
 public class Pago {
     private int id;
@@ -47,6 +48,24 @@ public class Pago {
     }
     public void setMetodoPago(String metodoPago){this.metodoPago = metodoPago;}
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pago pago = (Pago) o;
+        return id == pago.id &&
+               Double.compare(pago.monto, monto) == 0 &&
+               Objects.equals(reserva, pago.reserva) &&
+               Objects.equals(fechaPago, pago.fechaPago) &&
+               Objects.equals(metodoPago, pago.metodoPago);
+    }
+
+    // Sobrescribir hashCode
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, reserva, monto, fechaPago, metodoPago);
+    }
+
     //TOSTRING
     @Override
     public String toString() {
@@ -54,4 +73,3 @@ public class Pago {
                 + ", metodoPago=" + metodoPago + "]";
     }
 }
-//hola

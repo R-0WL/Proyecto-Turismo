@@ -7,6 +7,9 @@ import java.sql.Statement;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import com.easyrents.DatabaseConnection; // Asegúrate de que la ruta del paquete es correcta
+import com.easyrents.vistaInicioSesion;  // Asegúrate de que la ruta del paquete es correcta
+
 
 public class EasyRents {
 
@@ -15,6 +18,7 @@ public class EasyRents {
 	// private static ArrayList<Pago> listaPagos;
 	// private static ArrayList<Usuario> listaUsuarios;
 	// private static ArrayList<Vehiculo> listaVehiculos;
+	
 
 	public static void main(String[] args) {
 

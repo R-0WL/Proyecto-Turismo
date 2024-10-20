@@ -2,11 +2,13 @@
 //Separar Pago y Facturacion en diferentes clases?
 package com.easyrents;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class controladorPago {
     private Pago pago;
     private vistaPago vistaPago;
+    //private List<Reserva> listaReserva; (esto debe de venir de la base de datos)
+    //private List<Pago> listaPago (esto también)
 
     //CONSTRUCTOR
     public controladorPago(Pago pago, vistaPago vistaPago){

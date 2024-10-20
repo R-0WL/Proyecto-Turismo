@@ -1,6 +1,6 @@
 package com.easyrents;
 
-import java.util.LocalDate;
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Pago {
@@ -39,13 +39,14 @@ public class Pago {
         }
     }
     //validar fecha no futura
-    public void setFechaPago(java.time.LocalDate fechaPago){
-        if ((fechaPago.isBefore(java.time.LocalDate.now())) || (fechaPago.equals(java.time.LocalDate.now()))) {
-            this.fechaFin = fechaFin;
+    public void setFechaPago(LocalDate fechaPago) {
+        if (fechaPago.isBefore(LocalDate.now()) || fechaPago.equals(LocalDate.now())) {
+            this.fechaPago = fechaPago;
         } else {
-            throw new IllegalArgumentException("La fecha de pago debe no puede ser futura");
+            throw new IllegalArgumentException("La fecha de pago no puede ser futura");
         }
     }
+
     public void setMetodoPago(String metodoPago){this.metodoPago = metodoPago;}
 
     @Override

@@ -12,11 +12,6 @@ public class controladorUsuario {
         this.vistaInicioSesion = vista;
     }
 
-    // Método para mostrar mensajes en ventanas emergentes
-	private static mostrarMensaje(String mensaje) {
-        JOptionPane.showMessageDialog(null, mensaje);
-    }
-
     public void iniciarSesion(String correo, String contraseña) {
         //consultar a la base de datos o lista de usuarios
         //esta simulando que ya hay alguien registrado

@@ -3,6 +3,7 @@ package com.easyrents;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class vistaPago {
     private JFrame frame; // Ventana principal
@@ -14,6 +15,12 @@ public class vistaPago {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
     }
+
+    // Método para mostrar mensajes en ventanas emergentes
+	public static mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(null, mensaje);
+    }
+
     public void mostrarFormularioPago(Reserva reserva) {
         // Código para mostrar el formulario de pago
     }

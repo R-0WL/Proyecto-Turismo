@@ -12,11 +12,11 @@ public class Vehiculo {
     private String modelo;
     private int año;
     private String tipo;
-    private double precio;
+    private double tarifaDiaria;
     private boolean disponible;
 
     //METODO CONSTRUCTOR
-    public Vehiculo(int id, String marca, String modelo, int año, String tipo, double precio, boolean disponible) {
+    public Vehiculo(int id, String marca, String modelo, int año, String tipo, double tarifaDiaria, boolean disponible) {
         this.id = id;
         this.marca = marca;
         this.modelo = modelo;
@@ -24,7 +24,7 @@ public class Vehiculo {
         setAño(año);
         this.tipo = tipo;
         //ingreso por set para validacion
-        setPrecio(precio);
+        setTarifaDiaria(tarifaDiaria);
         this.disponible = disponible;
     }
     
@@ -34,7 +34,7 @@ public class Vehiculo {
     public String getModelo(){return modelo;}
     public int getAño(){return año;}
     public String getTipo(){return tipo;}
-    public double getPrecio(){return precio;}
+    public double getTarifaDiaria(){return tarifaDiaria;}
     public boolean getDisponible(){return disponible;}
 
     //SETTERS
@@ -50,12 +50,12 @@ public class Vehiculo {
         }
     }
     public void setTipo(String tipo){this.tipo = tipo;}
-    //valida precio mayor a 0
-    public void setPrecio(double precio){
-        if (precio > 0) {
-            this.precio = precio;
+    //valida tarifaDiaria mayor a 0
+    public void setTarifaDiaria(double tarifaDiaria){
+        if (tarifaDiaria > 0) {
+            this.tarifaDiaria = tarifaDiaria;
         } else {
-            throw new IllegalArgumentException("El precio ingresado no es valido");
+            throw new IllegalArgumentException("El tarifaDiaria ingresado no es valido");
         }
     }
     public void setDisponible(boolean disponible){this.disponible = disponible;}
@@ -84,7 +84,7 @@ public class Vehiculo {
     @Override
     public String toString() {
         return "Vehiculo [id=" + id + ", marca=" + marca + ", modelo=" + modelo + ", año=" + año + ", tipo=" + tipo
-                + ", precio=" + precio + ", disponible=" + disponible + "]";
+                + ", tarifaDiaria=" + tarifaDiaria + ", disponible=" + disponible + "]";
     }
 
     //compara los datos ingresados con los datos de los carros en el sistema y devuelve una lista con todos los carros que compartan datos

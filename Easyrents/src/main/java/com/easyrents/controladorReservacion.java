@@ -16,23 +16,29 @@ public class controladorReservacion {
         this.vistaReservacion = vistaReservacion;
     }
 
+    private double calcularTotal(LocalDate fechaInicio, LocalDate fechaFin, double tarifaDiaria) {
+        // Implementa la lógica para calcular el total basado en las fechas y el vehículo
+        short dias = fechaInicio.until(fechaFin).getDays();
+        return dias * tarifaDiaria;
+    }
+
     //crea una nueva reservacion 
     //falta guardarla en la base de datos
     public Optional<Reserva> crearReservacion(Usuario usuario, Vehiculo vehiculo, LocalDate fechaInicio, LocalDate fechaFin, double monto) {
-        if(usuario == null || vehiculo == null || fechaInicio == null || fechaFin == null) {
-            vistaReservacion.mostrarError("Por favor, complete todos los campos requeridos.");
-            return Optional.empty();
-        } else {
-            //id es la cantidad de reservas creadas
-            idReserva++;
-            reserva = new Reserva(idReserva, usuario, vehiculo, fechaInicio, fechaFin, monto);
-            vistaReservacion.mostrarConfirmacion("Reservación creada exitosamente.");
-            return reserva;
-        }
-
-        //Validar y guardar datos en la base de datos
-        try {
-            //Reserva nuevaReserva = new Reserva(0, usuario, vehiculo, null, null, 0);
+        try {   
+            monto = calcularTotal(fechaInicio, fechaFin, vehiculo.getTarifaDiaria()); 
+            if(usuario == null || vehiculo == null || fechaInicio == null || fechaFin == null || monto <= 0) {
+                vistaReservacion.mostrarError("Por favor, complete todos los campos requeridos.");
+                return Optional.empty();
+            } else {
+                //id = la cantidad de reservas creadas hasta el momento
+                idReserva++;
+                monto = calcularTotal(fechaInicio, fechaFin, vehiculo.getTarifaDiaria());
+                reserva = new Reserva(idReserva, usuario, vehiculo, fechaInicio, fechaFin, monto);
+                vistaReservacion.mostrarConfirmacion("Reservación creada exitosamente.");
+                return reserva;
+                //IMPLEMENTAR guardar datos en la base de datos!!!!
+            }
             //guardar en la base de datos
         } catch(IllegalArgumentException e){
             vistaReservacion.mostrarError("Error al crear la reservación:" + e.getMessage());
@@ -43,6 +49,7 @@ public class controladorReservacion {
     //falta guardar en la base de datos
     public void modificarReserva(int idReserva, Vehiculo nuevoVehiculo, LocalDate nuevaFechaInicio, LocalDate nuevaFechaFin, double nuevoMonto) {
         try {
+            nuevoMonto = calcularTotal(nuevaFechaInicio, nuevaFechaFin, nuevoVehiculo.getTarifaDiaria());
             //itera reservas para encontrar la que se quiere modificar
             if (fechaInicio != null || fechaFin != null || nuevoMonto >= 0 || nuevoVehiculo != null || idReserva > 0) {
                 for (Reserva reserva : listaReserva) {//listaReserva debe cambiarse por base de datos

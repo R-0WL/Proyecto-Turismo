@@ -16,19 +16,23 @@ public class controladorUsuario {
         //consultar a la base de datos o lista de usuarios
         //esta simulando que ya hay alguien registrado
         if (usuario != null && usuario.getCorreo().equals(correo) && usuario.getContraseña().equals(contraseña)) {
-            mostrarMensaje("Inicio de sesión exitoso para: " + usuario.getNombre());
+            //Cambiar por ventana emergente de mensaje
+            //mostrarMensaje("Inicio de sesión exitoso para: " + usuario.getNombre());
             //abajo redirigir al usuario a su perfil o a la página principal
         } else {
-            mostrarMensaje("Correo o contraseña incorrectos, por favor intente de nuevo.");
+            //cambiar por ventana emergente de mensaje
+            //mostrarMensaje("Correo o contraseña incorrectos, por favor intente de nuevo.");
         }
     }
     
     public void registrarUsuario(Usuario nuevoUsuario) {
         if (usuario == null) { // Validación de momento
             this.usuario = nuevoUsuario;
-            mostrarMensaje("Usuario registrado exitosamente: " + nuevoUsuario);
+            //cambiar por vetana emergente
+            //mostrarMensaje("Usuario registrado exitosamente: " + nuevoUsuario);
         } else {
-            mostrarMensaje("Error: El usuario ya existe.");
+            //cambiar por ventana emergente
+            //mostrarMensaje("Error: El usuario ya existe.");
         }
     }
 
@@ -39,9 +43,11 @@ public class controladorUsuario {
             usuario.setCorreo(usuarioActualizado.getCorreo());
             usuario.setContraseña(usuarioActualizado.getContraseña());
             usuario.setTipoUsuario(usuarioActualizado.getTipoUsuario());
-            mostrarMensaje("Perfil actualizado exitosamente: " + usuarioActualizado);
+            //mosrtar en ventana emergente
+            //mostrarMensaje("Perfil actualizado exitosamente: " + usuarioActualizado);
         } else {
-            mostrarMensaje("Error: Usuario no encontrado.");
+            //mostrar en ventana emergente
+            //mostrarMensaje("Error: Usuario no encontrado.");
         }
     }
 }

@@ -36,7 +36,7 @@ public class controladorReservacion {
                 monto = calcularTotal(fechaInicio, fechaFin, vehiculo.getTarifaDiaria());
                 reserva = new Reserva(idReserva, usuario, vehiculo, fechaInicio, fechaFin, monto);
                 vistaReservacion.mostrarConfirmacion("Reservación creada exitosamente.");
-                return reserva;
+                return Optional.of(reserva);
                 //IMPLEMENTAR guardar datos en la base de datos!!!!
             }
             //guardar en la base de datos

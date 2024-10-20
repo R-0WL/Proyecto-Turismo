@@ -58,7 +58,5 @@ public class controladorVehiculo {
                 vistaBusquedaVehiculos.mostrarError("No se encontraron vehículos disponibles.");
             }
         }
-        
-        
     }
 }

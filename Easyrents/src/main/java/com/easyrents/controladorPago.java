@@ -1,59 +1,49 @@
-//Requisitos funcionales a cumplir: 7.Pago y Facturacion
-//Separar Pago y Facturacion en diferentes clases?
 package com.easyrents;
 
 import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
 
 public class controladorPago {
     private Pago pago;
     private vistaPago vistaPago;
-    //private List<Reserva> listaReserva; (esto debe de venir de la base de datos)
-    //private List<Pago> listaPago (esto también)
+    private List<Reserva> listaReserva; // Esto debería conectarse a la base de datos
+    private controladorFacturacion controladorFacturacion; // Nueva instancia de controladorFacturacion para generar facturas
 
-    //CONSTRUCTOR
-    public controladorPago(Pago pago, vistaPago vistaPago){
+    // Constructor
+    public controladorPago(Pago pago, vistaPago vistaPago, controladorFacturacion controladorFacturacion){
         this.pago = pago;
         this.vistaPago = vistaPago;
+        this.controladorFacturacion = controladorFacturacion; // Relacionar con facturación
     }
 
-    //para pagar la reserva se pide el ID de esta junto al metodo de pago
+    // Método para realizar un pago
     public void realizarPago(int reservaId, String metodoPago) {
-        if(reservaId <= 0 || metodoPago == null || metodoPago.isEmpty()){
-        //mejor implementar devolver valores, que luego seran procesados en el main
-        //que devolver texto. En mi opinion, Hector
-        //devolver numeros o hacer un enum para chequear casos
-        vistaPago.mostrarError("El ID de la reserva y el metodo de pago son obligatorios.");
-        return;
-        } else {
-            for (Reserva reserva : listaReserva) {//listaReserva debe cambiarse por base de datos
-                if (reserva.getId() == idReserva) {
-                    pago = new Pago(reservaId,//id de la reserva o un contador de pagos??? 
-                    reserva, reserva.getMonto(), new Date(), metodoPago);//fecha actual = new Date()
-                    vistaPago.mostrarMensajeExito("Pago procesado exitosamente para la reserva ID: " + reservaId);
-                    return;    
-                } 
-            }
-            //si el for termina y no se encuentra la reserva
-            vistaPago.mostrarError("No se encontró la reserva con ID " + reservaId);
+        if (reservaId <= 0 || metodoPago == null || metodoPago.isEmpty()) {
+            vistaPago.mostrarError("El ID de la reserva y el método de pago son obligatorios.");
             return;
         }
-    }
-    
-    public void generarFactura(int pagoId) {
-        if (pago == null){
-            vistaPago.mostrarError("No se encontró el pago con ID " + pagoId);
-            return;
-        } else {
-            for (Pago pago : listaPago) {//listaPago debe cambiarse por base de datos
-                if (pago.getId() == pagoId) {
-                    String factura ="Factura para el pago ID: " + pagoId + "\n" +
-                                    "Reserva asociada: " + pago.getReserva().getId() + "\n" +
-                                    "Método de pago: " + pago.getMetodoPago() + "\n" +
-                                    "Monto: $" + pago.getMonto() + "\n" +
-                                    "Fecha: " + pago.getFecha();
-                    mostrarMensaje(factura);
-                }
+
+        for (Reserva reserva : listaReserva) { // Obtener reserva de la base de datos
+            if (reserva.getId() == reservaId) {
+                // Crear el pago
+                pago = new Pago(reservaId, reserva, reserva.getMonto(), new Date(), metodoPago);
+                
+                // Mostrar éxito en la vista
+                vistaPago.mostrarMensajeExito("Pago procesado exitosamente para la reserva ID: " + reservaId);
+
+                // Generar factura automáticamente tras el pago
+                generarFactura(pago.getId());
+                return;
             }
-        }  
+        }
+
+        // Si no se encuentra la reserva
+        vistaPago.mostrarError("No se encontró la reserva con ID: " + reservaId);
+    }
+
+    // Método para generar factura automáticamente después del pago
+    private void generarFactura(int pagoId) {
+        controladorFacturacion.generarFactura(pago); // Llama al controlador de facturación para mostrar la factura
     }
 }

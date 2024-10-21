@@ -10,6 +10,7 @@ public class Reserva {
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
     private double monto;
+    private String estado;
 
     //METODO CONSTRUCTOR
     public Reserva(int id, Usuario usuario, Vehiculo vehiculo, LocalDate fechaInicio, LocalDate fechaFin, double monto) {
@@ -17,6 +18,9 @@ public class Reserva {
         this.usuario = usuario;
         this.vehiculo = vehiculo;
         this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.monto = monto;
+        this.estado = "activa";
         //validacion
         setFechaFin(fechaFin);
         setMonto(monto);
@@ -29,12 +33,14 @@ public class Reserva {
     public LocalDate getFechaInicio() {return fechaInicio;}
     public LocalDate getFechaFin() {return fechaFin;}
     public double getMonto() {return monto;}
+    public String getEstado() {return estado;}
     
     //SETTERS
     public void setId(int id) {this.id = id;}    
     public void setUsuario(Usuario usuario) {this.usuario = usuario;}
     public void setVehiculo(Vehiculo vehiculo) {this.vehiculo = vehiculo;}
     public void setFechaInicio(LocalDate fechaInicio) {this.fechaInicio = fechaInicio;}
+    public void setEstado(String estado) {this.estado = estado;}
     //validar fecha final despues de inicial
     public void setFechaFin(LocalDate fechaFin) {
         if (fechaFin.isAfter(fechaInicio)) {
@@ -50,6 +56,10 @@ public class Reserva {
         } else {
             throw new IllegalArgumentException("El monto ingresado no es valido");
         }
+    }
+    // Método para cancelar la reserva
+    public void cancelar() {
+        this.estado = "cancelada"; // Cambiar el estado a "cancelada"
     }
     // Sobrescribir equals
     @Override

@@ -3,24 +3,26 @@ package com.easyrents;
 public class controladorFacturacion {
     private vistaFacturacion vistaFacturacion;
 
-    // Constructor
+    // CONSTRUCTOR
     public controladorFacturacion(vistaFacturacion vistaFacturacion) {
         this.vistaFacturacion = vistaFacturacion;
     }
 
-    // Método para generar factura
+    // Generar factura para un pago específico
     public void generarFactura(Pago pago) {
         if (pago == null) {
             vistaFacturacion.mostrarError("No se encontró el pago.");
             return;
         }
 
+        // Creación de la factura
         String factura = "Factura para el pago ID: " + pago.getId() + "\n" +
                          "Reserva asociada: " + pago.getReserva().getId() + "\n" +
                          "Método de pago: " + pago.getMetodoPago() + "\n" +
                          "Monto: $" + pago.getMonto() + "\n" +
                          "Fecha: " + pago.getFecha();
-                         
-        vistaFacturacion.mostrarFactura(factura); // Muestra la factura en la vista de facturación
+
+        // Mostrar la factura en la vista de facturación
+        vistaFacturacion.mostrarFactura(factura);
     }
 }

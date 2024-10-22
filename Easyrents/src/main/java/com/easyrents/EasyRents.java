@@ -7,8 +7,8 @@ import java.sql.Statement;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import com.easyrents.DatabaseConnection; // Asegúrate de que la ruta del paquete es correcta
-import com.easyrents.vistaInicioSesion;  // Asegúrate de que la ruta del paquete es correcta
+import com.easyrents.DatabaseConnection; 
+import com.easyrents.vistaInicioSesion;  
 
 
 public class EasyRents {
@@ -24,6 +24,7 @@ public class EasyRents {
 
 		try {
 			Connection conn = DatabaseConnection.getConnection();
+			//devuelve DatabaseConnection cannot be resolved
 			Statement stmt = conn.createStatement();
 			String query = "INSERT INTO userslist (correo, contraseña, dpi, nombre, apellido, edad, numreservas_activas, numreservas_pasadas, licencia_moto, licencia_carro, licencia_bus) " + "VALUES ('emailforexample@gmail.com', '12345678', " + 1784567898 + ", 'Nombre prueba', 'apellido prueba', " + 29 + ", " + 0 + ", " + 0 + "," + true + "," + true + "," + true + ")";
 			String query2 ="DELETE FROM userslist WHERE dpi = 1234567898";
@@ -35,8 +36,6 @@ public class EasyRents {
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
-
-		
 
 		frmEasyrents = new JFrame();
 		frmEasyrents.setVisible(true);

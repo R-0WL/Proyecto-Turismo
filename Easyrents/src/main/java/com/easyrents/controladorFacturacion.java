@@ -23,6 +23,6 @@ public class controladorFacturacion {
                          "Fecha: " + pago.getFecha();
 
         // Mostrar la factura en la vista de facturación
-        vistaFacturacion.mostrarFactura(factura);
+        vistaFacturacion.mostrarFactura(factura, pago.getId());
     }
 }

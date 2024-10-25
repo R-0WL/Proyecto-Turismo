@@ -1,3 +1,7 @@
+<!-- "Maven utilizes the Project Object Model (POM), where the pom.xml 
+file describes the project’s configuration and dependency management."
+e-grafia: https://www.geeksforgeeks.org/what-is-maven/ -->
+
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
@@ -22,6 +26,13 @@
 			<artifactId>postgresql</artifactId>
 			<version>42.7.4</version>
 		</dependency>
+
+        <!-- dependencia para facilitar la creacion de pdfs-->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itext7-core</artifactId>
+            <version>7.1.15</version>
+        </dependency>
 
     </dependencies>
 

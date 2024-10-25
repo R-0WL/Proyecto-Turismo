@@ -10,7 +10,8 @@ public class vistaFacturacion {
         JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
     //mostrar ventana de opciones para la factura
-    public void mostrarFactura(String mensaje, int numFactura) {
-        JOptionPane.showOptionDialog(null, mensaje, "Factura No. " + numFactura, 0, 3, null, opciones, mensaje);
+    public int mostrarFactura(String mensaje, int numFactura) {
+        int respuesta = JOptionPane.showOptionDialog(null, mensaje, "Factura No. " + numFactura, 0, 3, null, opciones, mensaje);
+        return respuesta;
     }
 }

@@ -6,29 +6,27 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.kernel.pdf.PdfDocument;
 
 public class controladorFacturacion {
-    private vistaFacturacion vistaFacturacion;
+    private vistaFacturacion vistaFactura;
 
     // CONSTRUCTOR
-    public controladorFacturacion(vistaFacturacion vistaFacturacion) {
-        this.vistaFacturacion = vistaFacturacion;
+    public controladorFacturacion(vistaFacturacion vistaFactura) {
+        this.vistaFactura = vistaFactura;
     }
 
     // Generar factura para un pago específico
-    public void generarFactura(Pago pago) {
-        if (pago == null) {
-            vistaFacturacion.mostrarError("No se encontró el pago.");
+    public void generarFactura(Pago pay) {
+        if (pay == null) {
+            vistaFacturacion.mostrarError("No se encontró el pay.");
             return;
         }
-
-        // Creación de la factura
-        String factura = "Factura para el pago ID: " + pago.getId() + "\n" +
-                         "Reserva asociada: " + pago.getReserva().getId() + "\n" +
-                         "Método de pago: " + pago.getMetodoPago() + "\n" +
-                         "Monto: $" + pago.getMonto() + "\n" +
-                         "Fecha: " + pago.getFecha();
-
+        // Creación del texto de la factura
+        String factura = "Factura para el pay ID: " + pay.getId() + "\n" +
+                         "Reserva asociada: " + pay.getReserva().getId() + "\n" +
+                         "Método de pay: " + pay.getMetodoPago() + "\n" +
+                         "Monto: $" + pay.getMonto() + "\n" +
+                         "Fecha: " + pay.getFecha();
         // Mostrar la factura en la vista de facturación
-        if (vistaFacturacion.mostrarFactura(factura, pago.getId()) == 0) {
+        if (vistaFacturacion.mostrarFactura(factura, pay.getId()) == 0) {
             imprimirFactura(factura);
         } else {
             vistaFacturacion.mostrarError("Error al imprimir la factura.");
@@ -39,7 +37,7 @@ public class controladorFacturacion {
     public void imprimirFactura(String factura) {
         //metodos y objetos de la dependencia itextpdf
         //la dependencia es cargada en el pom.xml, por maven
-        PdfWriter writer = new PdfWriter("factura" + pago.getId() + ".pdf");
+        PdfWriter writer = new PdfWriter("factura" + pay.getId() + ".pdf");
         PdfDocument pdf = new PdfDocument(writer);
         Document document = new Document(pdf);
         document.add(new Paragraph(factura));

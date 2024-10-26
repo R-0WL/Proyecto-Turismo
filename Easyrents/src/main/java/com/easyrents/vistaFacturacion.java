@@ -12,6 +12,7 @@ public class vistaFacturacion {
     //mostrar ventana de opciones para la factura
     public int mostrarFactura(String mensaje, int numFactura) {
         int respuesta = JOptionPane.showOptionDialog(null, mensaje, "Factura No. " + numFactura, 0, 3, null, opciones, mensaje);
+        //devuelve un int que corresponde al indice de la lista de opciones
         return respuesta;
     }
 }

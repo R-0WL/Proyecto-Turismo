@@ -16,7 +16,8 @@ public class controladorFacturacion {
     // Generar factura para un pago específico
     public void generarFactura(Pago pay) {
         if (pay == null) {
-            vistaFacturacion.mostrarError("No se encontró el pay.");
+            // Asegúrate de que `vistaFacturacion` es una instancia y se llama correctamente
+            vistaFactura.mostrarError("No se encontró el pay.");
             return;
         }
         // Creación del texto de la factura
@@ -26,10 +27,10 @@ public class controladorFacturacion {
                          "Monto: $" + pay.getMonto() + "\n" +
                          "Fecha: " + pay.getFecha();
         // Mostrar la factura en la vista de facturación
-        if (vistaFacturacion.mostrarFactura(factura, pay.getId()) == 0) {
-            imprimirFactura(factura);
+        if (vistaFactura.mostrarFactura(factura, pay.getId()) == 0) {
+            imprimirFactura(factura, pay); // Asegúrate de pasar el objeto `pay` si es necesario
         } else {
-            vistaFacturacion.mostrarError("Error al imprimir la factura.");
+            vistaFactura.mostrarError("Error al imprimir la factura.");
         }
     }
 

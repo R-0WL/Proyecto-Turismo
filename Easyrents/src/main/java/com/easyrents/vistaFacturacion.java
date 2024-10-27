@@ -9,7 +9,7 @@ public class vistaFacturacion {
     private JFrame frame; // Ventana principal
 
     // Constructor para inicializar la ventana
-    public vistaPago() {
+    public void vistaPago() {
         frame = new JFrame("Pago");
         frame.setSize(400, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

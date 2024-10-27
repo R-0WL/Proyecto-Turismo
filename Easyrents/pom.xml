@@ -46,6 +46,7 @@ e-grafia: https://www.geeksforgeeks.org/what-is-maven/ -->
             <configuration>
                 <source>8</source>
                 <target>8</target>
+                <encoding>UTF-8</encoding>
             </configuration>
         </plugin>
         <!-- other plugins -->

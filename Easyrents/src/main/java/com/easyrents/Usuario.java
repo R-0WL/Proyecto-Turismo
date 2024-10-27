@@ -53,9 +53,11 @@ public class Usuario {
     //EQUALS
     @Override
     public boolean equals(Object o) {
+        //valida si es el mismo objeto de la misma clase
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Usuario usuario = (Usuario) o;
+        //valida todos los atributos de los objetos
         return id == usuario.id &&
                numDocLicencia == usuario.numDocLicencia &&
                numTelefono == usuario.numTelefono &&

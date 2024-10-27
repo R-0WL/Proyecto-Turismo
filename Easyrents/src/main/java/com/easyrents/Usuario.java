@@ -50,6 +50,7 @@ public class Usuario {
     public void setNumDocLicencia(long numDocLicencia){this.numDocLicencia = numDocLicencia;}
     public void setNumTelefono(int numTelefono){this.numTelefono = numTelefono;}
 
+    //EQUALS
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -64,11 +65,12 @@ public class Usuario {
                Objects.equals(tipoUsuario, usuario.tipoUsuario);
     }
 
-    // Sobrescribir hashCode
+    // HASHCODE
     @Override
     public int hashCode() {
         return Objects.hash(id, nombre, correo, contraseña, tipoUsuario, numDocLicencia, numTelefono);
     }
+
     //TOSTRING
     @Override
     public String toString() {

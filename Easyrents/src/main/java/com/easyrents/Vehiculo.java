@@ -60,6 +60,7 @@ public class Vehiculo {
     }
     public void setDisponible(boolean disponible){this.disponible = disponible;}
 
+    //EQUALS
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true; // Mismo objeto
@@ -72,14 +73,12 @@ public class Vehiculo {
             año == other.año; // Considerando año como parte de la igualdad
     }
 
+    //HASHCODE
     @Override
     public int hashCode() {
-        int result = Integer.hashCode(id); // Código hash del ID
-        result = 31 * result + marca.hashCode(); // Usando 31 como un número primo
-        result = 31 * result + modelo.hashCode(); // Código hash del modelo
-        result = 31 * result + Integer.hashCode(año); // Código hash del año
-        return result;
+        return Objects.hash(id, marca, modelo, año, tipo, tarifaDiaria, disponible);
     }
+    
     //TOSTRING
     @Override
     public String toString() {

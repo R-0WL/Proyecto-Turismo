@@ -1,6 +1,7 @@
 package com.easyrents;
 
-import java.util.*;
+import java.awt.BorderLayout;
+import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -43,7 +44,7 @@ public class vistaBusquedaVehiculos {
         panelDetalles.add(new JLabel("Marca: " + vehiculo.getMarca()));
         panelDetalles.add(new JLabel("Modelo: " + vehiculo.getModelo()));
         panelDetalles.add(new JLabel("Año: " + vehiculo.getAño()));
-        panelDetalles.add(new JLabel("Precio: $" + vehiculo.getPrecio()));
+        panelDetalles.add(new JLabel("Precio por dia: $" + vehiculo.getTarifaDiaria()));
 
         // Refrescar el panel para mostrar los nuevos datos
         panelDetalles.revalidate();

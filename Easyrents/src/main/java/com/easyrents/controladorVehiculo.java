@@ -18,7 +18,7 @@ public class controladorVehiculo {
     }
 
     // Método para buscar vehículos en la lista según los criterios proporcionados
-    public void buscarVehiculos(String criteriosBusqueda) {
+    public void buscarVehiculo(String marca, String modelo, String tipo) {
         // Verifica si se han proporcionado criterios de búsqueda
         if (criteriosBusqueda == null || criteriosBusqueda.isEmpty()) {
             // Muestra un mensaje de error si los criterios no son válidos
@@ -26,15 +26,14 @@ public class controladorVehiculo {
             return; // Sale del método si no hay criterios válidos
         } else {
             // Busca vehículos que coincidan con los criterios en la lista de vehículos
-            List<Vehiculo> resultados = Vehiculo.buscarVehiculos(criteriosBusqueda, listaVehiculos);
-            
+            List<Vehiculo> resultadosStr = Vehiculo.buscarVehiculosStr( marca,  modelo,  tipo, listaVehiculos);
             // Verifica si se encontraron resultados
-            if (resultados.isEmpty()) {
+            if (resultadosStr.isEmpty()) {
                 // Muestra un mensaje de error si no hay vehículos disponibles
                 vistaBusquedaVehiculos.mostrarError("No se encontraron vehiculos disponibles.");
             } else {
                 // Muestra los resultados de búsqueda en la vista
-                vistaBusquedaVehiculos.mostrarResultadosBusqueda(resultados);
+                vistaBusquedaVehiculos.mostrarResultadosBusqueda(resultadosStr);
             }
         }
     }
@@ -48,7 +47,7 @@ public class controladorVehiculo {
             return; // Sale del método si el ID no es válido
         } else {
             // Busca el vehículo correspondiente al ID proporcionado
-            Vehiculo vehiculoEncontrado = Vehiculo.obtenerVehiculoPorID(vehiculoId, listaVehiculos);
+            Vehiculo vehiculoEncontrado = Vehiculo.buscarVehiculosID(vehiculoId, listaVehiculos);
             // Verifica si se encontró el vehículo
             if (vehiculoEncontrado != null) {
                 // Muestra los detalles del vehículo en la vista

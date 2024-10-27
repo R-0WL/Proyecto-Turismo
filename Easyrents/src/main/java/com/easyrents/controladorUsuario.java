@@ -27,7 +27,7 @@ public class controladorUsuario {
         if (usuario != null && usuario.getContraseña().equals(contraseña)) {
             // Autenticar al usuario, guardándolo como el usuario actual
             usuarioActual = usuario;
-            vistaInicioSesion.mostrarConfirmacion("Inicio de sesión exitoso."); // Asegúrate de que este método esté definido
+            vistaInicioSesion.mostrarExito("Inicio de sesión exitoso."); // Asegúrate de que este método esté definido
         } else {
             // Mostrar error si el correo o la contraseña son incorrectos
             vistaInicioSesion.mostrarError("Correo o contraseña incorrectos.");
@@ -47,7 +47,7 @@ public class controladorUsuario {
         if (usuarioExistente == null) {
             // Si no existe, proceder con el registro del nuevo usuario
             // Aquí se debe implementar la lógica para guardar el nuevo usuario en la base de datos
-            vistaInicioSesion.mostrarConfirmacion("Usuario registrado exitosamente.");
+            vistaInicioSesion.mostrarExito("Usuario registrado exitosamente.");
         } else {
             // Si el usuario ya existe, mostrar un mensaje de error
             vistaInicioSesion.mostrarError("El usuario ya existe.");

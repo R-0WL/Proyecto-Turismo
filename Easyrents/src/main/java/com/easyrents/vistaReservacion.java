@@ -57,7 +57,7 @@ public class vistaReservacion {
 		especificacionesTitleLbl_1.setBounds(10, 180, 140, 34);
 		frame.getContentPane().add(especificacionesTitleLbl_1);
 		
-		JLabel precioTitleLbl = new JLabel("Precio por día: Q. " + vehiculo.getPrecio());
+		JLabel precioTitleLbl = new JLabel("Precio por día: Q. " + vehiculo.getTarifaDiaria());
 		precioTitleLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 19));
 		precioTitleLbl.setBounds(10, 257, 324, 34);
 		frame.getContentPane().add(precioTitleLbl);
@@ -114,7 +114,7 @@ public class vistaReservacion {
 					LocalDate fechaFinal = LocalDate.of(Integer.parseInt((String) yearFinalBox.getSelectedItem()), Integer.parseInt((String) mesFinalBox.getSelectedItem()), Integer.parseInt((String) diaFinalBox.getSelectedItem()));
 					
 					long numDias = Math.abs(calcDiasInBetween(fechaInicio, fechaFinal));
-					totalPagarLbl.setText("Total a pagar: Q. " + vehiculo.getPrecio() * numDias);
+					totalPagarLbl.setText("Total a pagar: Q. " + vehiculo.getTarifaDiaria() * numDias);
 					totalPagarLbl.revalidate();
 					totalPagarLbl.repaint();
 					frame.getContentPane().revalidate();
@@ -138,13 +138,13 @@ public class vistaReservacion {
 					);
 					long numDias = ChronoUnit.DAYS.between(fechaInicio, fechaFinal);
 		
-					Date fechaInicioDate = Date.from(fechaInicio.atStartOfDay(ZoneId.systemDefault()).toInstant());
-					Date fechaFinalDate = Date.from(fechaFinal.atStartOfDay(ZoneId.systemDefault()).toInstant());
+					LocalDate fechaInicioDate = LocalDate.from(fechaInicio.atStartOfDay(ZoneId.systemDefault()).toInstant());
+					LocalDate fechaFinalDate = LocalDate.from(fechaFinal.atStartOfDay(ZoneId.systemDefault()).toInstant());
 		
 					// Conversión de Date a LocalDate
 					LocalDate fechaInicioLocalDate = fechaInicioDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 					
-					double precioPagar = vehiculo.getPrecio() * numDias;
+					double precioPagar = vehiculo.getTarifaDiaria() * numDias;
 					mostrarConfirmacion("¡Se ha creado la reserva exitosamente!");
 		
 					Reserva reservaNueva = new Reserva(0, currentUsuario, vehiculo, fechaInicioDate, fechaFinalDate, precioPagar);
@@ -161,7 +161,7 @@ public class vistaReservacion {
 					LocalDate fechaInicio = LocalDate.of(Integer.parseInt((String) yearInicioBox.getSelectedItem()), Integer.parseInt((String) mesInicioBox.getSelectedItem()), Integer.parseInt((String) diaInicioBox.getSelectedItem()));
 					LocalDate fechaFinal = LocalDate.of(Integer.parseInt((String) yearFinalBox.getSelectedItem()), Integer.parseInt((String) mesFinalBox.getSelectedItem()), Integer.parseInt((String) diaFinalBox.getSelectedItem()));
 					long numDias = Math.abs(calcDiasInBetween(fechaInicio, fechaFinal));
-					totalPagarLbl.setText("Total a pagar: Q. " + vehiculo.getPrecio() * numDias);
+					totalPagarLbl.setText("Total a pagar: Q. " + vehiculo.getTarifaDiaria() * numDias);
 					totalPagarLbl.revalidate();
 					totalPagarLbl.repaint();
 					frame.getContentPane().revalidate();
@@ -188,10 +188,10 @@ public class vistaReservacion {
 					LocalDate fechaInicio = LocalDate.of(Integer.parseInt((String) yearInicioBox.getSelectedItem()), Integer.parseInt((String) mesInicioBox.getSelectedItem()), Integer.parseInt((String) diaInicioBox.getSelectedItem()));
 					LocalDate fechaFinal = LocalDate.of(Integer.parseInt((String) yearFinalBox.getSelectedItem()), Integer.parseInt((String) mesFinalBox.getSelectedItem()), Integer.parseInt((String) diaFinalBox.getSelectedItem()));
 					long numDias = ChronoUnit.DAYS.between(fechaInicio, fechaFinal);
-					Date fechaInicioDate = Date.from(fechaInicio.atStartOfDay(ZoneId.systemDefault()).toInstant());
-					Date fechaFinalDate = Date.from(fechaFinal.atStartOfDay(ZoneId.systemDefault()).toInstant());
+					LocalDate fechaInicioDate = LocalDate.from(fechaInicio.atStartOfDay(ZoneId.systemDefault()).toInstant());
+					LocalDate fechaFinalDate = LocalDate.from(fechaFinal.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-					double precioPagar = vehiculo.getPrecio() * numDias;
+					double precioPagar = vehiculo.getTarifaDiaria() * numDias;
 					mostrarConfirmacion("¡Se ha creado la reserva exitosamente!");
 					// Reserva de prueba
 					Reserva reservaNueva = new Reserva(0, currentUsuario, vehiculo, fechaInicioDate, fechaFinalDate, precioPagar);

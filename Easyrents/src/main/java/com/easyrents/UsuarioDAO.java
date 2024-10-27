@@ -14,17 +14,20 @@ public class UsuarioDAO {
 
     // Método para guardar un usuario en la base de datos
     public void guardarUsuario(Usuario usuario) throws SQLException {
-        String sql = "INSERT INTO usuarios (nombre, correo, contraseña, tipo_usuario) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO usuarios (id, nombre, correo, contraseña, tipo_usuario, numnumDocLicencia, telefono) VALUES (?, ?, ?, ?, ?, ?, ?)";
         
         // Uso de try-with-resources para manejar conexión y PreparedStatement
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
              
             // Asignar parámetros de la consulta SQL
-            stmt.setString(1, usuario.getNombre());
-            stmt.setString(2, usuario.getCorreo());
-            stmt.setString(3, usuario.getContraseña());
-            stmt.setString(4, usuario.getTipoUsuario());
+            stmt.setInt(1, usuario.getId());
+            stmt.setString(2, usuario.getNombre());
+            stmt.setString(3, usuario.getCorreo());
+            stmt.setString(4, usuario.getContraseña());
+            stmt.setString(5, usuario.getTipoUsuario());
+            stmt.setLong(6, usuario.getNumDocLicencia());
+            stmt.setInt(7, usuario.getTelefono());
             
             // Ejecutar la consulta de inserción
             stmt.executeUpdate();
@@ -59,7 +62,9 @@ public class UsuarioDAO {
                     rs.getString("nombre"),
                     correo,
                     rs.getString("contraseña"),
-                    rs.getString("tipo_usuario")
+                    rs.getString("tipo_usuario"),
+                    rs.getLong("numDocLicencia"),
+                    rs.getInt("telefono")
                 );
                 LOGGER.log(Level.INFO, "Usuario obtenido con éxito: {0}", correo);
                 return usuario;

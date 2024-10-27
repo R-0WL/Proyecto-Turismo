@@ -106,7 +106,7 @@ public class vistaInicioSesion {
 		loginBtn_1.setBounds(109, 320, 121, 47);
         loginBtn_1.setBackground(Color.WHITE);
         // CONDICIONAL QUE VENDRÁ DE VALIDAR LOS DATOS DEL USUARIO, FALTA IMPLEMENTAR
-		Usuario usuarioActual = new Usuario(298649667, "Santiago Cordero Quirós", "cor24472@uvg.edu.gt", "pepe123", "Turismo");
+		Usuario usuarioActual = new Usuario(298649667, "Santiago Cordero Quirós", "cor24472@uvg.edu.gt", "pepe123", "Turismo", 22000000);
 		//usuario actual, prueba momentanea
 		loginBtn_1.addActionListener(new ActionListener() {		
 			public void actionPerformed(ActionEvent e){
@@ -129,15 +129,16 @@ public class vistaInicioSesion {
 				if((txtCorreoElectrnico.getText().replaceAll("\\s+","").equals("")) || (passwordField.getPassword().toString().replaceAll("\\s+","").equals(""))){
 					mostrarError("Debe de ingresar un correo y su contraseña respectiva.");
 					return;
-				}else if(!credentialsValidated){
-					mostrarError("Las credenciales ingresadas no son correctas, vuelva a intentar.");
-					return;
+					//debe crearse el metodo para validar credenciales!!!!!!!!
+				// }else if(!credentialsValidated){
+				// 	mostrarError("Las credenciales ingresadas no son correctas, vuelva a intentar.");
+				// 	return;
 				}else if(!txtCorreoElectrnico.getText().contains("@")){
 					mostrarError("Debe de ingresar una dirección de correo válida");
 					return;
 				}else{
 					// USUARIO DE PRUEBA: (FALTA HACER LA LOGIN CON LA BASE DE DATOS Y VALIDAR)
-					Usuario usuarioActual = new Usuario(00000000, "Usuario Prueba", "correodelusuario@gmail.com", "pepe123", "Turismo");
+					Usuario usuarioActual = new Usuario(00000000, "Usuario Prueba", "correodelusuario@gmail.com", "pepe123", "Turismo", 12345678);
 					redireccionarDashboard(frame, usuarioActual);
 					return;
 				}

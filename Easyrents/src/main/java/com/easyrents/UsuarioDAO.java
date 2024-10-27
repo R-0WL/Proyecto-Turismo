@@ -21,7 +21,7 @@ public class UsuarioDAO {
              PreparedStatement stmt = connection.prepareStatement(sql)) {
              
             // Asignar parámetros de la consulta SQL
-            stmt.setInt(1, usuario.getId());
+            stmt.setInt(1, usuario.getID());
             stmt.setString(2, usuario.getNombre());
             stmt.setString(3, usuario.getCorreo());
             stmt.setString(4, usuario.getContraseña());
@@ -60,7 +60,7 @@ public class UsuarioDAO {
                 Usuario usuario = new Usuario(
                     rs.getInt("id"),
                     rs.getString("nombre"),
-                    correo,
+                    rs.getString("correo"),
                     rs.getString("contraseña"),
                     rs.getString("tipo_usuario"),
                     rs.getLong("numDocLicencia"),

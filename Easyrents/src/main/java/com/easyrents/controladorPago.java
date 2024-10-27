@@ -30,7 +30,7 @@ public class controladorPago {
                 return true;
             }
         }
-        vistaPay.mostrarError("Método de pago no válido. Los métodos permitidos son: " + metodosPagoValidos);
+        vistaPay.mostrarMensaje("Método de pago no válido. Los métodos permitidos son: " + metodosPagoValidos);
         return false;
     }
     
@@ -42,11 +42,11 @@ public class controladorPago {
     // Método para realizar un pay
     public void realizarPago(int reservaId, String metodoPago) {
         if (reservaId <= 0 || metodoPago == null || metodoPago.isEmpty()) {
-            vistaPay.mostrarError("El ID de la reserva y el método de pay son obligatorios.");
+            vistaPay.mostrarMensaje("El ID de la reserva y el método de pay son obligatorios.");
             return;
         }
         if (!validarMetodoPago(metodoPago)) {
-            vistaPay.mostrarError("Método de pay no válido. Los métodos permitidos son: " + metodosPagoValidos);
+            vistaPay.mostrarMensaje("Método de pay no válido. Los métodos permitidos son: " + metodosPagoValidos);
             return;
         } else {
             for (Reserva reserva : listaReserva) { // Obtener reserva de la base de datos
@@ -54,13 +54,13 @@ public class controladorPago {
                     // Crear el pay
                     pay = new Pago(reservaId, reserva, reserva.getMonto(), new Date(), metodoPago);
                     // Mostrar éxito en la vista
-                    vistaPay.mostrarMensajeExito("Pago procesado exitosamente para la reserva ID: " + reservaId);
+                    vistaPay.mostrarMensaje("Pago procesado exitosamente para la reserva ID: " + reservaId);
                     // Generar factura automáticamente tras el pay
                     generarFactura(pay.getId());
                     return;
                 }
                 // Si no se encuentra la reserva
-                vistaPay.mostrarError("No se encontró la reserva con ID " + reservaId);
+                vistaPay.mostrarMensaje("No se encontró la reserva con ID " + reservaId);
             }
         }
     }

@@ -16,8 +16,8 @@ public class vistaPago {
         frame.setLayout(new BorderLayout());
     }
 
-    // Método para mostrar mensajes en ventanas emergentes
-	public static mostrarMensaje(String mensaje) {
+    // Método para mostrar mensajes en ventanas emergente
+	public void mostrarMensaje(String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje);
     }
 
@@ -26,8 +26,5 @@ public class vistaPago {
     }
     public void mostrarConfirmacionPago(Pago pago) {
         // Código para mostrar la confirmación del pago
-    }
-    public void mostrarError(String mensaje) {
-        // Código para mostrar errores durante el proceso de pago
     }
 }

@@ -27,7 +27,7 @@ public class controladorUsuario {
         if (usuario != null && usuario.getContraseña().equals(contraseña)) {
             // Autenticar al usuario, guardándolo como el usuario actual
             usuarioActual = usuario;
-            vistaInicioSesion.mostrarConfirmacion("Inicio de sesión exitoso.");
+            vistaInicioSesion.mostrarConfirmacion("Inicio de sesión exitoso."); // Asegúrate de que este método esté definido
         } else {
             // Mostrar error si el correo o la contraseña son incorrectos
             vistaInicioSesion.mostrarError("Correo o contraseña incorrectos.");

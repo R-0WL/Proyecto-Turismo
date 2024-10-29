@@ -2,7 +2,7 @@ package com.easyrents;
 
 public class controladorUsuario {
     // Usuario actualmente autenticado en el sistema
-    private Usuario usuarioActual;
+    //private Usuario usuarioActual;
     
     // Vista relacionada con el inicio de sesión (interfaz gráfica o de consola)
     private vistaInicioSesion vistaInicioSesion;

@@ -9,10 +9,3 @@ public interface ILoadEnv{
     String USER = dotenv.get("DB_USER");
     String PASSWORD = dotenv.get("DB_PASSWORD");
 }
-// <dependency>
-//   <groupId>io.github.cdimascio</groupId>
-//   <artifactId>dotenv-java</artifactId>
-//   <version>5.2.2</version>
-// </dependency>
-
-//agregar a pom.xml

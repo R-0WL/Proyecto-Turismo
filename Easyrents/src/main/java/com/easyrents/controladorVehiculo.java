@@ -2,60 +2,46 @@ package com.easyrents;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 // Clase controladorVehiculo que maneja la lógica de búsqueda de vehículos
 // y la interacción con la vista de búsqueda de vehículos.
 public class controladorVehiculo {
-    private vistaBusquedaVehiculos vistaBusquedaVehiculos; // Vista para la búsqueda de vehículos
-    private List<Vehiculo> listaVehiculos; // Lista de vehículos disponibles para la búsqueda
+    private vistaBusquedaVehiculos vistaBusqueda; // Vista para la búsqueda de vehículos
+    //LA LISTA DE VEHICULOS SE DEBE DE OBTENER DE LA BASE DE DATOS EN EL MAIN
+    //POR ELLO SE BORRO DE ESTA CLASE
 
     // Constructor de la clase controladorVehiculo
-    public controladorVehiculo(vistaBusquedaVehiculos vistaBusquedaVehiculos, List<Vehiculo> listaVehiculos) {
-        this.vistaBusquedaVehiculos = vistaBusquedaVehiculos; // Inicializa la vista de búsqueda
-        // Inicializa la lista de vehículos, utilizando una lista vacía si se pasa un valor nulo
-        // ? : es el operador ternario, que es una forma abreviada de una declaración if-else
-        this.listaVehiculos = listaVehiculos != null ? listaVehiculos : new ArrayList<>();
+    public controladorVehiculo(vistaBusquedaVehiculos vistaBusqueda) {
+        this.vistaBusqueda = vistaBusqueda; // Inicializa la vista de búsqueda
     }
 
-    // Método para buscar vehículos en la lista según los criterios proporcionados
-    public void buscarVehiculo(String marca, String modelo, String tipo) {
-        // Verifica si se han proporcionado criterios de búsqueda
-        if (criteriosBusqueda == null || criteriosBusqueda.isEmpty()) {
-            // Muestra un mensaje de error si los criterios no son válidos
-            vistaBusquedaVehiculos.mostrarError("Por favor, ingrese todos los criterios de búsqueda.");
-            return; // Sale del método si no hay criterios válidos
-        } else {
-            // Busca vehículos que coincidan con los criterios en la lista de vehículos
-            List<Vehiculo> resultadosStr = Vehiculo.buscarVehiculosStr( marca,  modelo,  tipo, listaVehiculos);
-            // Verifica si se encontraron resultados
-            if (resultadosStr.isEmpty()) {
-                // Muestra un mensaje de error si no hay vehículos disponibles
-                vistaBusquedaVehiculos.mostrarError("No se encontraron vehiculos disponibles.");
-            } else {
-                // Muestra los resultados de búsqueda en la vista
-                vistaBusquedaVehiculos.mostrarResultadosBusqueda(resultadosStr);
+    //compara los datos ingresados con los datos de los carros en el sistema y devuelve una lista con todos los carros que compartan datos
+    public Optional<Vehiculo> buscarVehiculos(String marca, String modelo, String tipo, int vehiculoId, List<Vehiculo> listaVehiculos) {
+        //metodo devuelve una lista de vehiculos
+        Optional<Vehiculo> resultados = new ArrayList<>();
+        for (Vehiculo vehiculo : listaVehiculos) {
+            //Comprueba si el vehículo coincide con los criterios de búsqueda (marca, modelo, tipo)
+            boolean coincideMarca = (marca == null || vehiculo.getMarca().equalsIgnoreCase(marca));
+            boolean coincideModelo = (modelo == null || vehiculo.getModelo().equalsIgnoreCase(modelo));
+            boolean coincideTipo = (tipo == null || vehiculo.getTipo().equalsIgnoreCase(tipo));
+            boolean coincideId = (vehiculoId >= 0 && vehiculo.getID() == vehiculoId);
+            //Si coincide con al menos un criterio, añadir a la lista de resultados
+            if (coincideMarca && coincideModelo && coincideTipo || coincideId) {
+                resultados.add(vehiculo);
             }
-        }
+        } if (resultados.isEmpty()) {
+            return Optional.empty();
+        } return Optional.of(resultados);
     }
 
-    // Método para mostrar los detalles de un vehículo específico
-    public void mostrarDetallesVehiculo(int vehiculoId) {
-        // Verifica que el ID del vehículo sea válido
-        if (vehiculoId <= 0) {
-            // Muestra un mensaje de error si el ID no es válido
-            vistaBusquedaVehiculos.mostrarError("El ID del vehículo no es válido.");
-            return; // Sale del método si el ID no es válido
+    //validar la busqueda de vehiculos y mostrar sus resultados
+    public void resuldatosBusqueda(String marca, String modelo, String tipo, int vehiculoId, List<Vehiculo> listaVehiculos) {
+        List<Vehiculo> resultados = buscarVehiculos(marca, modelo, tipo, vehiculoId, listaVehiculos);
+        if (resultados == Optional.empty()) {
+            vistaBusqueda.mostrarError("No se encontraron vehiculos disponibles.");
         } else {
-            // Busca el vehículo correspondiente al ID proporcionado
-            Vehiculo vehiculoEncontrado = Vehiculo.buscarVehiculosID(vehiculoId, listaVehiculos);
-            // Verifica si se encontró el vehículo
-            if (vehiculoEncontrado != null) {
-                // Muestra los detalles del vehículo en la vista
-                vistaBusquedaVehiculos.mostrarDetallesVehiculo(vehiculoEncontrado);
-            } else {
-                // Muestra un mensaje de error si no se encontró el vehículo
-                vistaBusquedaVehiculos.mostrarError("No se encontraron vehículos disponibles.");
-            }
+            vistaBusqueda.mostrarResultadosBusqueda(resultados);
         }
     }
 }

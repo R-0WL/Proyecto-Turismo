@@ -32,7 +32,7 @@ public class vistaBusquedaVehiculos {
     public void mostrarResultadosBusqueda(List<Vehiculo> vehiculos) {
         modeloListaVehiculos.clear(); // Limpiar la lista antes de mostrar nuevos resultados
         for (Vehiculo vehiculo : vehiculos) {
-            modeloListaVehiculos.addElement(vehiculo.getModelo()); // Mostrar el modelo del vehículo
+            modeloListaVehiculos.addElement(vehiculo.toString()); // Mostrar el modelo del vehículo
         }
     }
     

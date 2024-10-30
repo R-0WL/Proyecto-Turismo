@@ -13,7 +13,7 @@ public class Usuario {
     
     //METODO CONSTRUCTOR
     public Usuario(int id, String nombre, String correo, String contraseña, String tipoUsuario, long numDocLicencia,
-            int numTelefono, int edad) {
+        int numTelefono) {
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;

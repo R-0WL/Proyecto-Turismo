@@ -19,7 +19,7 @@ public class controladorVehiculo {
     //compara los datos ingresados con los datos de los carros en el sistema y devuelve una lista con todos los carros que compartan datos
     public Optional<Vehiculo> buscarVehiculos(String marca, String modelo, String tipo, int vehiculoId, List<Vehiculo> listaVehiculos) {
         //metodo devuelve una lista de vehiculos
-        Optional<Vehiculo> resultados = new ArrayList<>();
+        List<Vehiculo> resultados = new ArrayList<>();
         for (Vehiculo vehiculo : listaVehiculos) {
             //Comprueba si el vehículo coincide con los criterios de búsqueda (marca, modelo, tipo)
             boolean coincideMarca = (marca == null || vehiculo.getMarca().equalsIgnoreCase(marca));
@@ -30,18 +30,18 @@ public class controladorVehiculo {
             if (coincideMarca && coincideModelo && coincideTipo || coincideId) {
                 resultados.add(vehiculo);
             }
-        } if (resultados.isEmpty()) {
-            return Optional.empty();
-        } return Optional.of(resultados);
+        }
+        return Optional.empty();
     }
 
+
     //validar la busqueda de vehiculos y mostrar sus resultados
-    public void resuldatosBusqueda(String marca, String modelo, String tipo, int vehiculoId, List<Vehiculo> listaVehiculos) {
-        List<Vehiculo> resultados = buscarVehiculos(marca, modelo, tipo, vehiculoId, listaVehiculos);
-        if (resultados == Optional.empty()) {
-            vistaBusqueda.mostrarError("No se encontraron vehiculos disponibles.");
+    public void resultadosBusqueda(String marca, String modelo, String tipo, int vehiculoId, List<Vehiculo> listaVehiculos){
+        Optional<Vehiculo> resultados = buscarVehiculos(marca, modelo, tipo, vehiculoId, listaVehiculos);
+        if (resultados.isPresent()) {
+            vistaBusqueda.mostrarResultados(resultados.get());
         } else {
-            vistaBusqueda.mostrarResultadosBusqueda(resultados);
+            vistaBusqueda.mostrarError(tipo);
         }
     }
 }

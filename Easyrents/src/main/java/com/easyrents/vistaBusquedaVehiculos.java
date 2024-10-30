@@ -58,4 +58,9 @@ public class vistaBusquedaVehiculos {
     public void mostrar() {
         frame.setVisible(true);
     }
+
+    public void mostrarResultados(Vehiculo vehiculo){
+        JOptionPane.showMessageDialog(frame, vehiculo, "Aquí están los resultaods",  JOptionPane.INFORMATION_MESSAGE);
+
+    }
 }
